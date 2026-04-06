@@ -11,16 +11,16 @@ $slug = get_post_field( 'post_name', get_post() );
 
 // Fail-safe: Automatically load the correct template based on slug if not explicitly set
 if ( $slug === 'about' ) {
-    include( get_template_directory() . '/template-about.php' );
+    include( get_template_directory() . '/page-templates/template-about.php' );
     return;
 } elseif ( $slug === 'contact' ) {
-    include( get_template_directory() . '/template-contact.php' );
+    include( get_template_directory() . '/page-templates/template-contact.php' );
     return;
 } elseif ( $slug === 'faq' ) {
-    include( get_template_directory() . '/template-faq.php' );
+    include( get_template_directory() . '/page-templates/template-faq.php' );
     return;
 } elseif ( $slug === 'terms' || $slug === 'privacy' || $slug === 'refund' || $slug === 'shipping' ) {
-    include( get_template_directory() . '/template-policy.php' );
+    include( get_template_directory() . '/page-templates/template-policy.php' );
     return;
 }
 ?>

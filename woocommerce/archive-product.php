@@ -23,7 +23,8 @@ get_header();
 do_action( 'woocommerce_before_main_content' );
 
 ?>
-<header class="woocommerce-products-header mb-8 text-left container mx-auto px-4 pt-8">
+<header class="woocommerce-products-header mb-8 text-left container mx-auto px-4 pt-12">
+    <?php woocommerce_breadcrumb(); ?>
     <?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
         <p class="text-primary text-[10px] tracking-[0.4em] uppercase font-bold mb-3 opacity-80">Research Grade</p>
         <h1 class="woocommerce-products-header__title page-title text-4xl md:text-5xl font-display font-bold text-foreground tracking-tight leading-tight"><?php woocommerce_page_title(); ?></h1>

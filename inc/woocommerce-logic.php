@@ -24,8 +24,26 @@ function colton_research_woocommerce_setup() {
     // Remove default WooCommerce wrappers
     remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
     remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
+
+    // Remove default breadcrumb to place it manually
+    remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
 }
 add_action( 'after_setup_theme', 'colton_research_woocommerce_setup' );
+
+/**
+ * Custom Breadcrumb Arguments
+ */
+function colton_research_breadcrumb_args() {
+    return array(
+        'delimiter'   => '<span class="mx-2 text-muted-foreground/30 text-[10px]">/</span>',
+        'wrap_before' => '<nav class="woocommerce-breadcrumb flex items-center text-[11px] font-bold uppercase tracking-widest text-muted-foreground/60 mb-6" itemprop="breadcrumb">',
+        'wrap_after'  => '</nav>',
+        'before'      => '<span class="hover:text-primary transition-colors">',
+        'after'       => '</span>',
+        'home'        => _x( 'Archive', 'breadcrumb', 'woocommerce' ),
+    );
+}
+add_filter( 'woocommerce_breadcrumb_defaults', 'colton_research_breadcrumb_args' );
 
 /**
  * Custom WooCommerce Badges
