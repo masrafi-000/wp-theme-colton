@@ -137,4 +137,62 @@ function colton_research_newsletter_signup() {
     wp_die();
 }
 add_action( 'wp_ajax_colton_newsletter_signup', 'colton_research_newsletter_signup' );
-add_action( 'wp_ajax_nopriv_colton_newsletter_signup', 'colton_research_newsletter_signup' );
+add_action('wp_ajax_nopriv_colton_newsletter_signup', 'colton_research_newsletter_signup' );
+
+
+/**
+ * Mailchimp Integration for Custom Popup Form
+ */
+function send_data_to_mailchimp_api($email)
+{
+    $api_key = get_option('mailchimp_api_key');
+    $list_id = get_option('mailchimp_list_id');
+    
+    if (!$api_key || !$list_id) {
+        return false;
+    }
+
+    $server_prefix = substr($api_key, strpos($api_key, '-') + 1);
+    $url = 'https://' . $server_prefix . '.api.mailchimp.com/3.0/lists/' . $list_id . '/members/';
+
+    $body = json_encode([
+        'email_address' => $email,
+        'status'        => 'subscribed',
+    ]);
+
+    $response = wp_remote_post($url, [
+        'method'      => 'POST',
+        'headers'     => [
+            'Authorization' => 'Basic ' . base64_encode('user:' . $api_key),
+            'Content-Type'  => 'application/json',
+        ],
+        'body'        => $body,
+    ]);
+
+    return $response;
+}
+
+add_action('wp_ajax_my_popup_form', 'my_popup_form_handler');
+add_action('wp_ajax_nopriv_my_popup_form', 'my_popup_form_handler');
+
+function my_popup_form_handler()
+{
+    if (isset($_POST['email'])) {
+        $email = sanitize_email($_POST['email']);
+        
+        // Send to Mailchimp
+        send_data_to_mailchimp_api($email);
+
+        // Also save locally for the theme's Subscriptions menu
+        if ( ! get_page_by_title( $email, OBJECT, 'colton_subscription' ) ) {
+            wp_insert_post( array(
+                'post_title'  => $email,
+                'post_type'   => 'colton_subscription',
+                'post_status' => 'publish',
+            ));
+        }
+
+        echo 'success';
+    }
+    wp_die();
+}

@@ -48,3 +48,20 @@ function manage_colton_subscription_posts_custom_column_content( $column, $post_
     }
 }
 add_action( 'manage_colton_subscription_posts_custom_column', 'manage_colton_subscription_posts_custom_column_content', 10, 2 );
+
+/**
+ * Add Mailchimp Settings to Settings > General
+ */
+add_action('admin_init', function () {
+    register_setting('general', 'mailchimp_api_key');
+    add_settings_field('mailchimp_api_key', 'Mailchimp API Key', function () {
+        $value = get_option('mailchimp_api_key', '');
+        echo '<input type="text" name="mailchimp_api_key" value="' . esc_attr($value) . '" class="regular-text">';
+    }, 'general');
+
+    register_setting('general', 'mailchimp_list_id');
+    add_settings_field('mailchimp_list_id', 'Mailchimp List ID', function () {
+        $value = get_option('mailchimp_list_id', '');
+        echo '<input type="text" name="mailchimp_list_id" value="' . esc_attr($value) . '" class="regular-text">';
+    }, 'general');
+});

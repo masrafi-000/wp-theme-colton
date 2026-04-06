@@ -90,9 +90,32 @@
         // Popup Newsletter Form
         $(document).on('submit', '#popup-newsletter-form', function(e) {
             e.preventDefault();
-            var $submitBtn = $(this).find('button');
-            $submitBtn.text('THANK YOU!').addClass('bg-green-500 text-white').removeClass('bg-white text-primary');
-            setTimeout(closeDiscountPopup, 1500);
+
+            var $form = $(this);
+            var $submitBtn = $form.find('button[type="submit"]');
+            var email = $form.find('input[type="email"]').val();
+
+            $submitBtn.prop('disabled', true).text('SENDING...');
+
+            $.ajax({
+                url: colton_ajax.ajax_url,
+                type: 'POST',
+                data: {
+                    action: 'my_popup_form',
+                    email: email
+                },
+                success: function(response) {
+                    $submitBtn.text('THANK YOU!');
+
+                    setTimeout(function() {
+                        closeDiscountPopup();
+                    }, 2000);
+                },
+                error: function() {
+                    alert('Error! Please try again.');
+                    $submitBtn.prop('disabled', false).text('Sign Up & Get 5% Off');
+                }
+            });
         });
     };
 
