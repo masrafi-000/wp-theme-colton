@@ -52,13 +52,19 @@ if ( ! is_ajax() ) {
 
         <?php do_action( 'woocommerce_review_order_before_submit' ); ?>
 
-        <div class="space-y-4">
+        <div class="flex flex-col gap-4">
             <?php 
             // The main place order button - styled dark
             echo apply_filters( 'woocommerce_order_button_html', '<button type="submit" class="w-full bg-[#1e293b] hover:bg-[#0f172a] text-white font-bold py-5 rounded-xl flex items-center justify-center gap-3 uppercase tracking-[0.2em] text-[13px] transition-all duration-300 shadow-lg shadow-slate-900/10" name="woocommerce_checkout_place_order" id="place_order" value="' . esc_attr( $order_button_text ) . '" data-value="' . esc_attr( $order_button_text ) . '"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>' . esc_html( $order_button_text ) . '</button>' ); // @codingStandardsIgnoreLine 
             ?>
             
-            <p class="text-[10px] text-center text-muted-foreground uppercase tracking-widest font-bold pt-2">Powered by PayPal</p>
+            <div class="flex items-center justify-between pt-2">
+                <a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="text-[11px] font-bold uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                    Return to Cart
+                </a>
+                <p class="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">Powered by PayPal</p>
+            </div>
         </div>
 
         <?php do_action( 'woocommerce_review_order_after_submit' ); ?>

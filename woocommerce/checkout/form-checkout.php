@@ -63,7 +63,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
     <?php do_action( 'woocommerce_before_checkout_form', $checkout ); ?>
 </div>
 
-<form name="checkout" method="post" class="checkout woocommerce-checkout max-w-7xl mx-auto px-4 flex flex-col lg:flex-row gap-16 pb-32" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
+<form name="checkout" method="post" class="checkout woocommerce-checkout max-w-7xl mx-auto px-4 flex flex-col xl:flex-row gap-8 xl:gap-16 pb-32" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
 
 	<?php if ( $checkout->get_checkout_fields() ) : ?>
 
@@ -93,7 +93,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
 	<?php endif; ?>
 	
-	<div class="w-full lg:w-[480px]">
+	<div class="w-full xl:w-[410px] 2xl:w-[480px] flex-shrink-0">
         <div class="bg-white border border-border rounded-2xl overflow-hidden shadow-sm sticky top-10">
             <div class="p-8 border-b border-border bg-gray-50/30">
                 <h3 id="order_review_heading" class="text-xl font-display font-bold text-foreground">Your Order</h3>

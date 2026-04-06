@@ -552,3 +552,8 @@ button.single_add_to_cart_button.button.alt:hover,
     transform: translateX(50px) scale(0.9);
   }
 }
+
+
+div#page {
+    width: 100%;
+}

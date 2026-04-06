@@ -23,20 +23,30 @@ defined( 'ABSPATH' ) || exit;
 
             if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
                 ?>
-                <div class="flex items-center gap-5">
-                    <div class="w-16 h-16 bg-white border border-border rounded-xl p-2 flex-shrink-0 shadow-sm">
+                <div class="flex items-start gap-5 py-2">
+                    <div class="w-16 h-16 bg-white border border-border rounded-xl p-2 flex-shrink-0 shadow-sm overflow-hidden flex items-center justify-center">
                         <?php echo apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key ); ?>
                     </div>
-                    <div class="flex-grow flex justify-between gap-4">
-                        <div class="space-y-1">
-                            <p class="text-sm font-bold text-foreground">
-                                <?php echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) ); ?>
-                                <span class="text-muted-foreground font-medium ml-1">× <?php echo $cart_item['quantity']; ?></span>
+                    <div class="flex-grow flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 overflow-hidden">
+                        <div class="min-w-0 flex-1">
+                            <p class="text-sm font-bold text-foreground leading-tight truncate-two-lines">
+                                <?php 
+                                // Get the name but strip any potential duplicate price appended by filters/plugins
+                                $item_name = apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key );
+                                echo wp_kses_post( $item_name ); 
+                                ?>
                             </p>
+                            <div class="flex items-center gap-2 mt-1">
+                                <span class="bg-secondary text-muted-foreground text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Qty: <?php echo $cart_item['quantity']; ?></span>
+                                <?php 
+                                // Display variation/metadata if it exists, but style it subtly
+                                do_action( 'woocommerce_after_cart_item_name', $cart_item, $cart_item_key );
+                                ?>
+                            </div>
                         </div>
-                        <span class="text-sm font-bold text-foreground shrink-0">
+                        <div class="text-sm font-bold text-foreground whitespace-nowrap tabular-nums text-right self-end sm:self-center">
                             <?php echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); ?>
-                        </span>
+                        </div>
                     </div>
                 </div>
                 <?php
