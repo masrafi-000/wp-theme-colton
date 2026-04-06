@@ -8,41 +8,24 @@
 get_header();
 ?>
 
-<style>
-    .hero-section { position: relative; height: 85vh; min-height: 600px; display: flex; align-items: center; overflow: hidden; background-color: black; }
-    .hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); z-index: 1; }
-    .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
-    .hero-container { position: relative; z-index: 10; width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 4%; }
-    .hero-content { text-align: left; color: white; max-width: 700px; }
-    .hero-subtitle { color: #eab308; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 20px; }
-    .hero-title { font-size: 64px; font-weight: 700; line-height: 1.1; margin-bottom: 24px; }
-    .hero-title span { color: #eab308; }
-    .hero-desc { font-size: 18px; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 32px; max-width: 500px; }
-    .hero-btns { display: flex; gap: 16px; justify-content: flex-start; }
-    .hero-btn { padding: 16px 40px; border-radius: 6px; font-weight: 700; text-transform: uppercase; text-decoration: none; transition: 0.3s; display: inline-block; }
-    .hero-btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 20px rgba(234, 179, 8, 0.2); }
-    .hero-btn:active { transform: translateY(-1px) scale(0.98); }
-    .hero-btn-primary { background: #eab308; color: black; }
-    .hero-btn-secondary { border: 2px solid #eab308; color: #eab308; }
-</style>
 
 <!-- Hero -->
-<section class="hero-section">
-    <img src="<?php echo get_template_directory_uri(); ?>/assets/hero-bg.jpg" alt="Laboratory research" class="hero-img" />
-    <div class="hero-overlay"></div>
-    <div class="hero-container">
-        <div class="hero-content animate-slide-up">
-            <p class="hero-subtitle">Premium Quality</p>
-            <h1 class="hero-title">
+<section class="relative h-[85vh] min-h-[600px] flex items-center overflow-hidden bg-black">
+    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/hero-bg.jpg" alt="Laboratory research" class="absolute inset-0 w-full h-full object-cover z-0" />
+    <div class="absolute inset-0 bg-black/60 z-1"></div>
+    <div class="relative z-10 w-full max-w-[1400px] mx-auto px-[4%]">
+        <div class="text-left text-white max-w-[700px] animate-slide-up">
+            <p class="text-[#eab308] text-sm font-semibold uppercase tracking-[4px] mb-5">Premium Quality</p>
+            <h1 class="text-[clamp(32px,5vw,64px)] font-bold leading-[1.1] mb-6">
                 Research<br />
-                <span>Peptides</span>
+                <span class="text-[#eab308]">Peptides</span>
             </h1>
-            <p class="hero-desc">
+            <p class="text-lg text-white/70 leading-relaxed mb-8 max-w-[500px]">
                 Highest purity research peptides for scientific investigation. HPLC tested, cGMP manufactured.
             </p>
-            <div class="hero-btns">
-                <a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="hero-btn hero-btn-primary">Shop Now</a>
-                <a href="<?php echo esc_url( home_url( '/about' ) ); ?>" class="hero-btn hero-btn-secondary">Learn More</a>
+            <div class="flex gap-4 justify-start">
+                <a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="px-10 py-4 rounded-lg font-bold uppercase no-underline transition-all duration-300 inline-block bg-[#eab308] text-black hover:-translate-y-1 hover:scale-105 hover:shadow-[0_10px_20px_rgba(234,179,8,0.2)] active:scale-95">Shop Now</a>
+                <a href="<?php echo esc_url( home_url( '/about' ) ); ?>" class="px-10 py-4 rounded-lg font-bold uppercase no-underline transition-all duration-300 inline-block border-2 border-[#eab308] text-[#eab308] hover:-translate-y-1 hover:scale-105 hover:shadow-[0_10px_20px_rgba(234,179,8,0.2)] active:scale-95">Learn More</a>
             </div>
         </div>
     </div>
@@ -181,16 +164,7 @@ get_header();
 	</section>
 </div>
 
-<style>
-    .text-gradient-gold {
-        background: linear-gradient(135deg, hsl(45, 80%, 55%), hsl(45, 70%, 70%));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    .bg-gradient-card {
-        background: linear-gradient(145deg, hsl(220, 18%, 12%) 0%, hsl(220, 18%, 8%) 100%);
-    }
-</style>
+<!-- No custom style block here; using global Tailwind config -->
 
 <?php
 get_footer();

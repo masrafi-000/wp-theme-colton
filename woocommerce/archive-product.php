@@ -34,15 +34,15 @@ do_action( 'woocommerce_before_main_content' );
 <div class="container mx-auto px-4 pb-24">
     <div class="flex flex-col lg:flex-row gap-12 lg:gap-16">
         <!-- Sidebar -->
-        <aside class="w-full lg:w-80 flex-shrink-0">
+        <aside class="w-full lg:w-80 shrink-0">
             <div class="sticky top-32 space-y-10">
                 <!-- Search -->
                 <div class="bg-card border border-border rounded-2xl p-6 shadow-sm">
                     <h3 class="text-foreground font-display font-bold uppercase tracking-[0.2em] text-[11px] mb-6 flex items-center gap-3">
-                        <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                        <span class="w-1.5 h-1.5  bg-primary rounded-full"></span>
                         Search Catalog
                     </h3>
-                    <?php woocommerce_product_search(); ?>
+                    <?php get_product_search_form(); ?>
                 </div>
 
                 <!-- Categories -->
@@ -79,7 +79,7 @@ do_action( 'woocommerce_before_main_content' );
 
         <!-- Product Grid -->
         <main class="flex-grow">
-            <div class="flex items-center justify-between mb-10 bg-secondary/30 rounded-2xl p-4 border border-border/50">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-10 bg-secondary/30 rounded-2xl p-4 md:p-6 border border-border/50 gap-4">
                 <?php
                 /**
                  * Hook: woocommerce_before_shop_loop.
@@ -93,7 +93,7 @@ do_action( 'woocommerce_before_main_content' );
             </div>
 
             <?php if ( woocommerce_product_loop() ) : ?>
-                <ul class="products grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
+                <ul class="products grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
                     <?php
                     while ( have_posts() ) {
                         the_post();
@@ -102,7 +102,7 @@ do_action( 'woocommerce_before_main_content' );
                     }
                     ?>
                 </ul>
-                <div class="mt-12">
+                <div class="mt-12 flex justify-center">
                     <?php
                     /**
                      * Hook: woocommerce_after_shop_loop.

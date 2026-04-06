@@ -27,7 +27,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
         <?php if ( has_custom_logo() ) : ?>
             <?php the_custom_logo(); ?>
         <?php else : ?>
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/main logo  - Edited.png" alt="<?php bloginfo( 'name' ); ?>" class="h-12 md:h-16 w-auto transition-transform group-hover:scale-105">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/main logo  - Edited.png" alt="<?php bloginfo( 'name' ); ?>" class="h-12 md:h-16 w-auto transition-transform group-hover:scale-105">
         <?php endif; ?>
     </a>
     <h1 class="text-xl font-display font-medium text-foreground">Checkout</h1>

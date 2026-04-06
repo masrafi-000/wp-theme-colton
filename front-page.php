@@ -8,132 +8,16 @@
 get_header();
 ?>
 
-<style>
-    /* --- Global Hero Styles --- */
-    .hero-section { 
-        position: relative; 
-        height: calc(100vh - 97px); /* Precise height minus header + border */
-        display: flex; 
-        align-items: center; 
-        overflow: hidden; /* Added back to prevent horizontal scroll from image transform */
-        background: radial-gradient(circle at 0% 0%, #0ea5e9 0%, #0b1120 55%, #020617 100%); 
-        color: #ffffff; 
-        width: 100%; 
-        max-width: 100%; /* Changed from 100vw to 100% to avoid scrollbar width issues */
-        margin: 0;
-        padding: 0;
-    }
-    
-    /* Admin Bar Height Offsets */
-    .admin-bar .hero-section { height: calc(100vh - 97px - 32px); }
-    @media (max-width: 782px) {
-        .admin-bar .hero-section { height: calc(100dvh - 65px - 46px); }
-    }
 
-    /* Ensure no horizontal overflow globally */
-    html, body { overflow-x: hidden; width: 100%; position: relative; margin: 0; padding: 0; }
-    body.home { overflow-x: hidden; }
-
-    .hero-overlay { position: absolute; inset: 0; background: radial-gradient(circle at 30% 50%, rgba(15,23,42,0.3) 0%, rgba(15,23,42,0.8) 50%, rgba(15,23,42,1) 100%); z-index: 1; }
-    .hero-img { position: absolute; top: 0; right: 0; width: 45%; height: 100%; object-fit: contain; z-index: 0; opacity: 1; transform: translateX(5%); filter: drop-shadow(0 0 100px rgba(2, 102, 158, 0.3)); pointer-events: none; }
-    .hero-container { position: relative; z-index: 10; width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 6%; display: flex; align-items: center; min-height: 0; }
-    .hero-content { text-align: left; color: #ffffff; max-width: 700px; z-index: 11; flex-shrink: 1; }
-    .hero-subtitle { color: #38bdf8; font-size: clamp(14px, 1.2vw, 16px); font-weight: 800; text-transform: uppercase; letter-spacing: 6px; margin-bottom: clamp(12px, 2vw, 24px); display: flex; items-center gap-3; }
-    .hero-title { font-size: clamp(32px, 5vw, 84px); font-weight: 800; line-height: 0.95; margin-bottom: clamp(16px, 3vw, 32px); color: #ffffff; text-shadow: 0 4px 24px rgba(0,0,0,0.5); letter-spacing: -0.04em; }
-    .hero-title span { color: #38bdf8; position: relative; display: inline-block; margin-top: 10px; }
-    .hero-desc { font-size: clamp(14px, 1.5vw, 22px); color: #e0f2fe; line-height: 1.6; margin-bottom: clamp(24px, 4vw, 48px); max-width: 600px; font-weight: 400; text-shadow: 0 2px 8px rgba(0,0,0,0.4); opacity: 0.9; }
-    .hero-btns { display: flex; gap: 24px; justify-content: flex-start; }
-    .hero-btn { padding: clamp(12px, 1.5vw, 22px) clamp(32px, 4vw, 56px); border-radius: 12px; font-weight: 800; text-transform: uppercase; text-decoration: none; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: inline-block; font-size: clamp(12px, 1.2vw, 16px); letter-spacing: 2px; }
-    .hero-btn:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 30px 60px rgba(2, 102, 158, 0.4); }
-    .hero-btn-primary { background: #02669e; color: #ffffff; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.2); display: inline-flex; align-items: center; gap: 15px; padding: clamp(12px, 1.5vw, 18px) clamp(32px, 3vw, 45px); border-radius: 50px; }
-    .hero-btn-primary .btn-arrow { background: #ffffff; color: #02669e; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease; }
-    .hero-btn-primary:hover .btn-arrow { transform: rotate(45deg); }
-    .hero-btn-secondary { background: transparent; border: 2px solid rgba(255, 255, 255, 0.6); color: #ffffff; backdrop-filter: blur(8px); }
-    .hero-btn-secondary:hover { border-color: #38bdf8; color: #ffffff; background: rgba(2, 102, 158, 0.2); }
-
-    /* Review Slider Styles */
-    .hero-review-slider { position: absolute; top: 30%; left: 60%; z-index: 20; max-width: 480px; color: #ffffff; text-align: center; transform: translate(-50%, -50%); }
-    .review-dots { display: flex; gap: 10px; margin-bottom: 20px; background: rgba(255,255,255,0.1); width: fit-content; padding: 8px 16px; border-radius: 20px; backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.1); margin-left: auto; margin-right: auto; }
-    .review-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: all 0.3s ease; }
-    .review-dot.active { background: #ffffff; transform: scale(1.3); }
-    .review-stars { display: flex; gap: 6px; color: #facc15; margin-bottom: 16px; justify-content: center; }
-    .review-content-wrapper { position: relative; height: 140px; overflow: hidden; }
-    .review-item { position: absolute; top: 0; left: 0; width: 100%; opacity: 0; visibility: hidden; transition: all 0.5s ease; transform: translateY(15px); }
-    .review-item.active { opacity: 1; visibility: visible; transform: translateY(0); }
-    .review-text { font-size: clamp(14px, 1.5vw, 20px); line-height: 1.6; color: rgba(255,255,255,1); font-weight: 500; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-
-    /* --- Additional Section Styles --- */
-    .btn-yellow { background: #02669e; color: #ffffff; border-radius: 50px; padding: 12px 32px; font-weight: 700; display: inline-flex; align-items: center; gap: 12px; transition: all 0.3s ease; text-transform: uppercase; font-size: 14px; }
-    .btn-yellow:hover { background: #014d7a; transform: translateY(-2px); }
-    .btn-yellow .btn-arrow { background: #ffffff; color: #02669e; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; }
-    
-    .section-title { font-size: clamp(28px, 4vw, 48px); font-weight: 800; line-height: 1.1; color: #0f172a; margin-bottom: 24px; }
-    .section-subtitle { font-size: 14px; font-weight: 700; color: #02669e; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; display: block; }
-    
-    .coa-card { background: #ffffff; border-radius: 24px; border: 1px solid #f1f5f9; padding: clamp(20px, 3vw, 32px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
-    .coa-header { background: #02669e; padding: 16px 24px; border-radius: 12px; margin-bottom: 24px; font-weight: 700; color: #ffffff; opacity: 0.9; }
-    .coa-info { font-size: 14px; color: #64748b; line-height: 2; }
-    .coa-info strong { color: #0f172a; }
-
-    .signature-card { border-radius: 24px; overflow: hidden; position: relative; aspect-ratio: 16/9; display: flex; flex-direction: column; justify-content: flex-end; padding: 32px; color: #ffffff; }
-    .signature-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; transition: transform 0.5s ease; }
-    .signature-card:hover img { transform: scale(1.05); }
-    .signature-content { position: relative; z-index: 1; }
-    .signature-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%); z-index: 0; }
-
-    .blog-card { background: #ffffff; border-radius: 24px; overflow: hidden; }
-    .blog-img { aspect-ratio: 4/3; background: #02669e; display: flex; align-items: center; justify-content: center; padding: 40px; }
-    .blog-img img { width: 100%; height: auto; object-fit: contain; }
-    .blog-content { padding: 24px 0; }
-    .blog-date { font-size: 14px; color: #64748b; margin-bottom: 8px; display: block; }
-    .blog-title { font-size: 18px; font-weight: 700; color: #0f172a; line-height: 1.4; margin-bottom: 12px; }
-    .blog-desc { font-size: 14px; color: #64748b; line-clamp: 2; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
-
-    .bg-radial-gradient { background: radial-gradient(circle at center, rgba(2, 102, 158, 0.15) 0%, transparent 70%); }
-
-    /* Trust Features Section Styles */
-    .trust-features-section { padding: 40px 0; background: #ffffff; border-bottom: 1px solid #f1f5f9; margin-top: 0; }
-    .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1400px; margin: 0 auto; padding: 0 6%; }
-    .trust-item { display: flex; align-items: center; gap: 15px; }
-    .trust-icon-box { background: #eff6ff; padding: 12px; border-radius: 12px; color: #02669e; display: flex; align-items: center; justify-content: center; }
-    .trust-content h4 { font-size: 15px; font-weight: 700; color: #0f172a; margin: 0; }
-    .trust-content p { font-size: 12px; color: #64748b; margin: 2px 0 0; }
-
-    /* --- Tablet & Mobile Refinements --- */
-    @media (max-width: 1024px) {
-        .hero-section { height: calc(100dvh - 65px); }
-        .hero-img { width: 100%; height: 35%; top: 0; opacity: 0.3; transform: translateX(0); object-fit: contain; }
-        .hero-overlay { background: radial-gradient(circle at 50% 50%, rgba(15,23,42,0.7) 0%, rgba(15,23,42,1) 100%); }
-        .hero-container { padding: 0 20px; display: flex; flex-direction: column; justify-content: center; height: 100%; min-height: 0; }
-        .hero-content { text-align: center; margin: 0 auto; max-width: 100%; }
-        .hero-subtitle { justify-content: center; }
-        .hero-btns { justify-content: center; margin-top: 20px; }
-        .hero-review-slider { position: relative; top: auto; left: auto; transform: none; margin: 30px auto 0; max-width: 100%; }
-        .review-content-wrapper { height: 120px; }
-    }
-
-    @media (max-width: 640px) {
-        .hero-section { height: calc(100dvh - 65px); }
-        .hero-title { font-size: 28px; margin-bottom: 8px; }
-        .hero-desc { font-size: 13px; margin-bottom: 16px; line-height: 1.4; }
-        .hero-btns { flex-direction: column; gap: 10px; align-items: center; }
-        .hero-btn { width: 100%; max-width: 240px; text-align: center; padding: 12px 24px; }
-        .hero-review-slider { margin-top: 15px; }
-        .review-content-wrapper { height: 90px; }
-        .review-text { -webkit-line-clamp: 3; font-size: 12px; }
-        .review-stars { margin-bottom: 8px; }
-        .review-dots { margin-bottom: 12px; }
-    }
-</style>
 
 <!-- Hero -->
-<section class="hero-section">
+<section class="relative lg:h-[calc(100vh-97px)] max-lg:h-[calc(100dvh-65px)] flex items-center overflow-hidden bg-[radial-gradient(circle_at_0%_0%,#0ea5e9_0%,#0b1120_55%,#020617_100%)] text-white w-full max-w-full m-0 p-0 [.admin-bar_&]:lg:h-[calc(100vh-97px-32px)] [.admin-bar_&]:max-[782px]:h-[calc(100dvh-65px-46px)]">
     <!-- Age Verification Modal -->
     <div id="age-verification-modal" class="fixed inset-0 z-[1100] hidden items-center justify-center p-4 bg-background/95 backdrop-blur-lg animate-fade-in">
         <div class="relative bg-white w-full max-w-lg rounded-[40px] p-12 text-center shadow-2xl border border-border overflow-hidden">
             <div class="relative space-y-10">
                 <div class="flex justify-center">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/main logo  - Edited.png" alt="Logo" class="h-16 w-auto">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/main logo  - Edited.png" alt="Logo" class="h-16 w-auto">
                 </div>
 
                 <div class="space-y-4">
@@ -176,7 +60,7 @@ get_header();
 
             <div class="relative space-y-8">
                 <div class="flex justify-center">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/main logo  - Edited.png" alt="Logo" class="h-16 w-auto">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/main logo  - Edited.png" alt="Logo" class="h-16 w-auto">
                 </div>
 
                 <div class="space-y-4">
@@ -188,6 +72,7 @@ get_header();
                     </p>
                 </div>
 
+                <!-- NOTE:  -->
                 <form id="popup-newsletter-form" class="space-y-4">
                     <input 
                         type="email" 
@@ -207,54 +92,54 @@ get_header();
         </div>
     </div>
 
-    <img src="<?php echo get_template_directory_uri(); ?>/assets/BPC-157.png" alt="BPC-157 research peptide vial" class="hero-img" />
-    <div class="hero-overlay"></div>
-    <div class="hero-container">
-        <div class="hero-review-slider animate-fade-in">
-            <div class="review-dots">
-                <div class="review-dot active" data-index="0"></div>
-                <div class="review-dot" data-index="1"></div>
-                <div class="review-dot" data-index="2"></div>
+    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/BPC-157.png" alt="BPC-157 research peptide vial" class="absolute top-0 right-0 lg:w-[45%] max-lg:w-full lg:h-full max-lg:h-[35%] object-contain z-0 lg:opacity-100 max-lg:opacity-30 lg:translate-x-[5%] max-lg:translate-x-0 [filter:drop-shadow(0_0_100px_rgba(2,102_158,0.3))] pointer-events-none" />
+    <div class="absolute inset-0 lg:bg-[radial-gradient(circle_at_30%_50%,rgba(15,23,42,0.3)_0%,rgba(15,23,42,0.8)_50%,rgba(15,23,42,1)_100%)] max-lg:bg-[radial-gradient(circle_at_50%_50%,rgba(15,23,42,0.7)_0%,rgba(15,23,42,1)_100%)] z-10"></div>
+    <div class="relative z-10 w-full max-w-[1400px] mx-auto lg:px-[6%] max-lg:px-5 flex items-center min-h-0 lg:flex-row max-lg:flex-col max-lg:justify-center lg:h-auto max-lg:h-full">
+        <div class="absolute lg:top-[30%] lg:left-[60%] lg:-translate-x-1/2 lg:-translate-y-1/2 max-lg:relative max-lg:top-auto max-lg:left-auto max-lg:transform-none lg:mt-0 max-lg:mt-[30px] max-sm:mt-[15px] z-20 max-w-[480px] max-lg:max-w-full text-white text-center animate-fade-in">
+            <div class="flex gap-2.5 mb-5 max-sm:mb-3 bg-white/10 w-fit px-4 py-2 rounded-[20px] backdrop-blur-[4px] border border-white/10 mx-auto">
+                <div class="w-2.5 h-2.5 rounded-full bg-white cursor-pointer transition-all duration-300 scale-[1.3] active review-dot" data-index="0"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-white/30 cursor-pointer transition-all duration-300 review-dot" data-index="1"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-white/30 cursor-pointer transition-all duration-300 review-dot" data-index="2"></div>
             </div>
-            <div class="review-stars">
+            <div class="flex gap-1.5 text-[#facc15] mb-4 max-sm:mb-2 justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
             </div>
-            <div class="review-content-wrapper">
-                <div class="review-item active">
-                    <p class="review-text">"I absolutely love this company. Real legitimate products, easy to access calculator guides, and fast shipping..."</p>
+            <div class="relative h-[140px] max-lg:h-[120px] max-sm:h-[90px] overflow-hidden">
+                <div class="absolute top-0 left-0 w-full opacity-100 visible translate-y-0 active review-item">
+                    <p class="text-[clamp(14px,1.5vw,20px)] max-sm:text-xs leading-1.6 text-white font-medium [text-shadow:0_2px_10px_rgba(0,0,0,0.3)] line-clamp-4 max-sm:line-clamp-3 overflow-hidden">"I absolutely love this company. Real legitimate products, easy to access calculator guides, and fast shipping..."</p>
                 </div>
-                <div class="review-item">
-                    <p class="review-text">"The purity levels are unmatched. Every batch I've tested has exceeded my expectations for research consistency."</p>
+                <div class="absolute top-0 left-0 w-full opacity-0 invisible transition-all duration-500 translate-y-[15px] review-item">
+                    <p class="text-[clamp(14px,1.5vw,20px)] max-sm:text-xs leading-1.6 text-white font-medium [text-shadow:0_2px_10px_rgba(0,0,0,0.3)] line-clamp-4 max-sm:line-clamp-3 overflow-hidden">"The purity levels are unmatched. Every batch I've tested has exceeded my expectations for research consistency."</p>
                 </div>
-                <div class="review-item">
-                    <p class="review-text">"Excellent customer support and detailed CoA documentation. Makes my laboratory workflow much smoother."</p>
+                <div class="absolute top-0 left-0 w-full opacity-0 invisible transition-all duration-500 translate-y-[15px] review-item">
+                    <p class="text-[clamp(14px,1.5vw,20px)] max-sm:text-xs leading-1.6 text-white font-medium [text-shadow:0_2px_10px_rgba(0,0,0,0.3)] line-clamp-4 max-sm:line-clamp-3 overflow-hidden">"Excellent customer support and detailed CoA documentation. Makes my laboratory workflow much smoother."</p>
                 </div>
             </div>
         </div>
 
-        <div class="hero-content animate-slide-up">
-            <p class="hero-subtitle"><?php echo esc_html( get_theme_mod( 'hero_subtitle', 'Premium Quality' ) ); ?></p>
+        <div class="text-left lg:text-left max-lg:text-center text-white max-w-[700px] max-lg:max-w-full z-11 shrink-1 max-lg:mx-auto animate-slide-up">
+            <p class="text-[#38bdf8] text-[clamp(14px,1.2vw,16px)] font-extrabold uppercase tracking-[6px] mb-[clamp(12px,2vw,24px)] flex items-center gap-3 max-lg:justify-center"><?php echo esc_html( get_theme_mod( 'hero_subtitle', 'Premium Quality' ) ); ?></p>
             <?php 
             $hero_title = get_theme_mod( 'hero_title', 'Research Peptides' );
             $title_parts = explode( ' ', $hero_title );
             $last_word = array_pop( $title_parts );
             $main_title = implode( ' ', $title_parts );
             ?>
-            <h1 class="hero-title">
+            <h1 class="text-[clamp(32px,5vw,84px)] max-lg:text-[28px] font-extrabold leading-[0.95] mb-[clamp(16px,3vw,32px)] max-lg:mb-2 text-white [text-shadow:0_4px_24px_rgba(0,0,0,0.5)] tracking-[-0.04em]">
                 <?php echo esc_html( $main_title ); ?><br />
-                <span><?php echo esc_html( $last_word ); ?></span>
+                <span class="text-[#38bdf8] relative inline-block mt-[10px]"><?php echo esc_html( $last_word ); ?></span>
             </h1>
-            <p class="hero-desc">
+            <p class="text-[#e0f2fe] text-[clamp(14px,1.5vw,22px)] max-lg:text-[13px] leading-1.6 max-lg:leading-1.4 mb-[clamp(24px,4vw,48px)] max-lg:mb-4 max-w-[600px] font-normal [text-shadow:0_2px_8px_rgba(0,0,0,0.4)] opacity-90">
                 Research-only peptides with ≥99% purity, HPLC tested and batch-verified so your data is clean, repeatable, and publication-ready.
             </p>
-            <div class="hero-btns">
-                <a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="hero-btn hero-btn-primary">
+            <div class="flex gap-6 justify-start max-lg:justify-center max-lg:mt-5 max-sm:flex-col max-sm:items-center max-sm:gap-2.5">
+                <a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="px-[clamp(32px,4vw,56px)] py-[clamp(12px,1.5vw,22px)] max-sm:px-6 max-sm:py-3 rounded-[50px] font-extrabold uppercase no-underline transition-all duration-[0.4s] cubic-bezier(0.16,1,0.3,1) inline-flex items-center gap-[15px] text-[clamp(12px,1.2vw,16px)] tracking-[2px] bg-primary text-white border-none shadow-[0_10px_20px_rgba(0,0,0,0.2)] hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_30px_60px_rgba(2,102,158,0.4)] max-sm:w-full max-sm:max-w-[240px] max-sm:text-center">
                     Shop Now
-                    <span class="btn-arrow">
+                    <span class="bg-white text-[#02669e] w-[35px] h-[35px] rounded-full flex items-center justify-center transition-transform duration-300 group-hover:rotate-45">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
                     </span>
                 </a>
@@ -264,8 +149,8 @@ get_header();
 </section>
 
 <!-- Trust Features Section -->
-<section class="trust-features-section reveal-on-scroll">
-    <div class="trust-grid">
+<section class="py-10 bg-white border-b border-[#f1f5f9] mt-0 reveal-on-scroll">
+    <div class="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-5 max-w-[1400px] mx-auto px-[6%]">
         <div class="trust-item group p-4 rounded-2xl transition-all duration-300 hover:bg-secondary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 cursor-default">
             <div class="trust-icon-box transition-transform duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
@@ -311,22 +196,22 @@ get_header();
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div class="space-y-8 text-left">
                 <div class="space-y-4">
-                    <span class="section-subtitle">Premium Quality</span>
-                    <h2 class="section-title">Next-Generation Research Peptides</h2>
+                    <span class="text-sm font-bold text-[#02669e] uppercase tracking-[2px] mb-4 block">Premium Quality</span>
+                    <h2 class="text-[clamp(28px,4vw,48px)] font-extrabold leading-[1.1] text-[#0f172a] mb-6">Next-Generation Research Peptides</h2>
                     <p class="text-lg text-muted-foreground leading-relaxed max-w-lg">
                         Experience a breakthrough in research with our advanced peptide formulations. Crafted for scientists who demand the extraordinary.
                     </p>
                 </div>
-                <a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="btn-yellow">
+                <a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="bg-[#02669e] text-white rounded-[50px] px-8 py-3 font-bold inline-flex items-center gap-3 transition-all duration-300 uppercase text-sm hover:bg-[#014d7a] hover:-translate-y-0.5">
                     Shop Now
-                    <span class="btn-arrow">
+                    <span class="bg-white text-[#02669e] w-7 h-7 rounded-full flex items-center justify-center text-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
                     </span>
                 </a>
             </div>
             <div class="relative">
                 <div class="rounded-[40px] overflow-hidden">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/BPC-157.png" alt="Research Peptides" class="w-full h-auto max-w-md mx-auto drop-shadow-2xl" />
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/BPC-157.png" alt="Research Peptides" class="w-full h-auto max-w-md mx-auto drop-shadow-2xl" />
                 </div>
             </div>
         </div>
@@ -415,14 +300,14 @@ get_header();
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 items-center">
             <div class="text-left">
-                <span class="section-subtitle">Certificates of Analysis</span>
-                <h2 class="section-title">Transparency You Can Trust</h2>
+                <span class="text-sm font-bold text-[#02669e] uppercase tracking-[2px] mb-4 block">Certificates of Analysis</span>
+                <h2 class="text-[clamp(28px,4vw,48px)] font-extrabold leading-[1.1] text-[#0f172a] mb-6">Transparency You Can Trust</h2>
                 <p class="text-muted-foreground leading-relaxed mt-6">
                     All products are supported by third-party laboratory testing and documented Certificates of Analysis. These reports confirm compound identity and purity, giving you direct access to the same data we use for internal quality verification.
                 </p>
             </div>
             <div class="text-center lg:text-right">
-                <div class="inline-block p-1 rounded-2xl bg-gradient-to-br from-primary/20 to-transparent">
+                <div class="inline-block p-1 rounded-2xl bg-linear-to-br from-primary/20 to-transparent">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/BPC-157.png" alt="Peptide Vial with COA" class="rounded-xl shadow-xl max-w-md w-full mx-auto" />
                 </div>
             </div>
@@ -443,21 +328,21 @@ get_header();
             );
             foreach ($batches as $b) :
             ?>
-            <div class="coa-card text-left animate-fade-in">
-                <div class="coa-header"><?php echo $b['name']; ?></div>
-                <div class="coa-info space-y-2">
-                    <p><strong>Batch:</strong> <?php echo $b['batch']; ?></p>
-                    <p><strong>Purity:</strong> <?php echo $b['purity']; ?></p>
-                    <p><strong>Date:</strong> <?php echo $b['date']; ?></p>
-                    <p><strong>Lab:</strong> Janoshik Laboratories</p>
-                    <p><strong>Key:</strong> <?php echo substr(md5($b['name']), 0, 12); ?></p>
+            <div class="bg-white rounded-3xl border border-[#f1f5f9] p-[clamp(20px,3vw,32px)] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05)] text-left animate-fade-in">
+                <div class="bg-[#02669e] p-4 px-6 rounded-xl mb-6 font-bold text-white opacity-90"><?php echo $b['name']; ?></div>
+                <div class="text-sm text-muted-foreground leading-[2] space-y-2">
+                    <p><strong class="text-foreground">Batch:</strong> <?php echo $b['batch']; ?></p>
+                    <p><strong class="text-foreground">Purity:</strong> <?php echo $b['purity']; ?></p>
+                    <p><strong class="text-foreground">Date:</strong> <?php echo $b['date']; ?></p>
+                    <p><strong class="text-foreground">Lab:</strong> Janoshik Laboratories</p>
+                    <p><strong class="text-foreground">Key:</strong> <?php echo substr(md5($b['name']), 0, 12); ?></p>
                 </div>
             </div>
             <?php endforeach; ?>
         </div>
 
         <div class="text-center">
-            <a href="#" class="btn-yellow">
+            <a href="#" class="bg-primary text-white rounded-[50px] px-8 py-3 font-bold inline-flex items-center gap-3 transition-all duration-300 uppercase text-sm hover:bg-[#014d7a] hover:-translate-y-0.5">
                 View Full Test Reports
                 <span class="btn-arrow">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
@@ -631,295 +516,7 @@ get_header();
 	</section>
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('newsletter-form');
-    const feedback = document.getElementById('newsletter-feedback');
 
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        feedback.textContent = 'Processing...';
-        feedback.className = 'text-sm mt-4 h-5 text-muted-foreground';
-
-        const formData = new FormData(form);
-        formData.append('action', 'colton_newsletter_signup');
-
-        fetch('<?php echo admin_url("admin-ajax.php"); ?>', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                feedback.textContent = data.data;
-                feedback.className = 'text-sm mt-4 h-5 text-green-500';
-                form.reset();
-            } else {
-                feedback.textContent = data.data;
-                feedback.className = 'text-sm mt-4 h-5 text-red-500';
-            }
-        })
-        .catch(error => {
-            feedback.textContent = 'An unexpected error occurred.';
-            feedback.className = 'text-sm mt-4 h-5 text-red-500';
-        });
-    });
-
-    // Hero Review Slider Logic
-    const reviewItems = document.querySelectorAll('.review-item');
-    const reviewDots = document.querySelectorAll('.review-dot');
-    let currentReview = 0;
-
-    function showReview(index) {
-        reviewItems.forEach(item => item.classList.remove('active'));
-        reviewDots.forEach(dot => dot.classList.remove('active'));
-        
-        reviewItems[index].classList.add('active');
-        reviewDots[index].classList.add('active');
-        currentReview = index;
-    }
-
-    function nextReview() {
-        let next = (currentReview + 1) % reviewItems.length;
-        showReview(next);
-    }
-
-    reviewDots.forEach(dot => {
-        dot.addEventListener('click', () => {
-            const index = parseInt(dot.dataset.index);
-            showReview(index);
-        });
-    });
-
-    setInterval(nextReview, 5000);
-
-    // FAQ Accordion Logic
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-        const toggle = item.querySelector('.faq-toggle');
-        const content = item.querySelector('.faq-content');
-        const icon = item.querySelector('.faq-icon');
-        const iconWrapper = item.querySelector('.faq-icon-wrapper');
-        
-        toggle.addEventListener('click', () => {
-            const isOpen = !content.classList.contains('hidden');
-            
-            // Close all other items
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.querySelector('.faq-content').classList.add('hidden');
-                    otherItem.querySelector('.faq-icon').classList.remove('rotate-180');
-                    otherItem.querySelector('.faq-icon-wrapper').classList.remove('bg-primary');
-                    otherItem.querySelector('.faq-icon').classList.remove('text-white');
-                    otherItem.querySelector('.faq-icon').classList.add('text-primary');
-                }
-            });
-            
-            if (!isOpen) {
-                content.classList.remove('hidden');
-                icon.classList.add('rotate-180');
-                iconWrapper.classList.add('bg-primary');
-                icon.classList.remove('text-primary');
-                icon.classList.add('text-white');
-            } else {
-                content.classList.add('hidden');
-                icon.classList.remove('rotate-180');
-                iconWrapper.classList.remove('bg-primary');
-                icon.classList.remove('text-white');
-                icon.classList.add('text-primary');
-            }
-        });
-    });
-
-    // COA Tabs Logic
-    const coaData = {
-        semaglutide: [
-            { name: "Semaglutide 5mg", batch: "11102025SM", purity: "99.174%", date: "22 JAN 2026", key: "07392999be2a" },
-            { name: "Semaglutide 10mg", batch: "1052026SM", purity: "99.524%", date: "16 FEB 2026", key: "f0974fac305f" },
-            { name: "Semaglutide 15mg", batch: "11092025SM", purity: "99.791%", date: "22 JAN 2026", key: "9e71f2a8a152" }
-        ],
-        bpc157: [
-            { name: "BPC-157 5mg", batch: "20250115BPC", purity: "99.821%", date: "15 JAN 2026", key: "7c2f8a1d5e4b" },
-            { name: "BPC-157 10mg", batch: "20250210BPC", purity: "99.914%", date: "10 FEB 2026", key: "4d9e1c3b7a5f" },
-            { name: "BPC-157 5mg (Arg)", batch: "20250301BPC", purity: "99.752%", date: "01 MAR 2026", key: "1a5c3e7b9d2f" }
-        ],
-        ipamorelin: [
-            { name: "Ipamorelin 2mg", batch: "20250120IPA", purity: "98.941%", date: "20 JAN 2026", key: "9b3d7f1e5a4c" },
-            { name: "Ipamorelin 5mg", batch: "20250225IPA", purity: "99.112%", date: "25 FEB 2026", key: "3f5a7d1c9e2b" },
-            { name: "Ipamorelin 10mg", batch: "20250315IPA", purity: "99.428%", date: "15 MAR 2026", key: "7e1c3b5a9d4f" }
-        ]
-    };
-
-    const coaTabBtns = document.querySelectorAll('.coa-tab-btn');
-    const coaGrid = document.getElementById('coa-grid');
-
-    coaTabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const product = btn.dataset.product;
-            
-            // Update active state
-            coaTabBtns.forEach(b => {
-                b.classList.remove('bg-primary', 'text-white', 'active');
-                b.classList.add('border', 'border-primary', 'text-primary');
-            });
-            btn.classList.add('bg-primary', 'text-white', 'active');
-            btn.classList.remove('border', 'border-primary', 'text-primary');
-
-            // Render new cards
-            if (coaData[product]) {
-                coaGrid.innerHTML = coaData[product].map(batch => `
-                    <div class="coa-card text-left animate-fade-in">
-                        <div class="coa-header">${batch.name}</div>
-                        <div class="coa-info space-y-2">
-                            <p><strong>Batch:</strong> ${batch.batch}</p>
-                            <p><strong>Purity:</strong> ${batch.purity}</p>
-                            <p><strong>Date:</strong> ${batch.date}</p>
-                            <p><strong>Lab:</strong> Janoshik Laboratories</p>
-                            <p><strong>Key:</strong> ${batch.key}</p>
-                        </div>
-                    </div>
-                `).join('');
-            }
-        });
-    });
-
-    // Resource Modals Logic
-    const modals = {
-        'reconstitution-guide': document.getElementById('modal-reconstitution-guide'),
-        'peptide-calculator': document.getElementById('modal-peptide-calculator'),
-        'bac-water-guide': document.getElementById('modal-bac-water-guide')
-    };
-
-    window.openResourceModal = function(id) {
-        if (modals[id]) {
-            modals[id].classList.remove('hidden');
-            modals[id].classList.add('flex');
-            document.body.classList.add('overflow-hidden');
-        }
-    };
-
-    window.closeResourceModal = function(id) {
-        if (modals[id]) {
-            modals[id].classList.add('hidden');
-            modals[id].classList.remove('flex');
-            document.body.classList.remove('overflow-hidden');
-        }
-    };
-
-    // Close on overlay click
-    Object.values(modals).forEach(modal => {
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                const id = modal.id.replace('modal-', '');
-                closeResourceModal(id);
-            }
-        });
-    });
-
-    // Peptide Calculator Logic
-    const calcForm = document.getElementById('peptide-calc-form');
-    if (calcForm) {
-        const inputs = calcForm.querySelectorAll('input');
-        const results = {
-            concentration: document.getElementById('calc-res-concentration'),
-            units: document.getElementById('calc-res-units'),
-            ml: document.getElementById('calc-res-ml')
-        };
-
-        const calculate = () => {
-            const mg = parseFloat(document.getElementById('calc-mg').value) || 0;
-            const ml = parseFloat(document.getElementById('calc-water').value) || 1;
-            const mcgDose = parseFloat(document.getElementById('calc-dose').value) || 0;
-
-            const concentrationMgMl = mg / ml;
-            const concentrationMcgMl = concentrationMgMl * 1000;
-            
-            let drawMl = 0;
-            if (concentrationMcgMl > 0) {
-                drawMl = mcgDose / concentrationMcgMl;
-            }
-            
-            const units = drawMl * 100; // Assuming U-100 syringe
-
-            results.concentration.textContent = concentrationMgMl.toFixed(2) + ' mg/mL';
-            results.ml.textContent = drawMl.toFixed(3) + ' mL';
-            results.units.textContent = Math.round(units) + ' Units';
-        };
-
-        inputs.forEach(input => input.addEventListener('input', calculate));
-        calculate();
-    }
-
-    // Age Verification Logic
-    const ageModal = document.getElementById('age-verification-modal');
-    const discountPopup = document.getElementById('first-visit-popup');
-    const closeDiscountBtn = document.getElementById('close-popup');
-    const discountForm = document.getElementById('popup-newsletter-form');
-
-    // Flow Logic
-    const showDiscountPopup = () => {
-        if (discountPopup) {
-            discountPopup.classList.remove('hidden');
-            discountPopup.classList.add('flex');
-            document.body.classList.add('overflow-hidden');
-        }
-    };
-
-    const closeDiscountPopup = () => {
-        discountPopup.classList.add('hidden');
-        discountPopup.classList.remove('flex');
-        document.body.classList.remove('overflow-hidden');
-    };
-
-    window.verifyAge = function(isOver21) {
-        if (isOver21) {
-            localStorage.setItem('colton_age_verified', 'true');
-            if (ageModal) {
-                ageModal.classList.add('hidden');
-                ageModal.classList.remove('flex');
-                document.body.classList.remove('overflow-hidden');
-            }
-            // Show discount popup after verification
-            setTimeout(showDiscountPopup, 500);
-        } else {
-            window.location.href = "https://www.google.com";
-        }
-    };
-
-    if (!localStorage.getItem('colton_age_verified')) {
-        // Show age modal first after 1.5 seconds
-        setTimeout(() => {
-            if (ageModal) {
-                ageModal.classList.remove('hidden');
-                ageModal.classList.add('flex');
-                document.body.classList.add('overflow-hidden');
-            }
-        }, 1500);
-    } else {
-        // Age verified, show discount popup on every reload
-        setTimeout(showDiscountPopup, 3000);
-    }
-
-    if (closeDiscountBtn) closeDiscountBtn.addEventListener('click', closeDiscountPopup);
-    
-    if (discountPopup) {
-        discountPopup.addEventListener('click', (e) => {
-            if (e.target === discountPopup) closeDiscountPopup();
-        });
-    }
-
-    if (discountForm) {
-        discountForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const submitBtn = discountForm.querySelector('button');
-            submitBtn.textContent = 'THANK YOU!';
-            submitBtn.classList.replace('bg-white', 'bg-green-500');
-            submitBtn.classList.replace('text-primary', 'text-white');
-            setTimeout(closeDiscountPopup, 1500);
-        });
-    }
-});
-</script>
 
 <!-- Modals -->
 <!-- Reconstitution Guide Modal -->
