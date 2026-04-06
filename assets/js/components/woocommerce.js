@@ -98,14 +98,94 @@
             }, 1000);
         });
 
+        // Toast Notifications Handler
+        function initToasts() {
+            var $container = $('#toast-container');
+            if (!$container.length) return;
+
+            // Function to show a toast
+            window.showToast = function(message, type) {
+                type = type || 'success';
+                var id = 'toast-' + Date.now();
+                
+                // Extract View Cart link if present and create a custom button for it
+                var $temp = $('<div>' + message + '</div>');
+                var $viewCartBtn = $temp.find('a.wc-forward');
+                var viewCartHtml = '';
+                
+                if ($viewCartBtn.length) {
+                    viewCartHtml = '<a href="' + $viewCartBtn.attr('href') + '" class="toast-view-cart">View Cart</a>';
+                    $viewCartBtn.remove();
+                    message = $temp.html();
+                }
+
+                var toastHtml = `
+                    <div id="${id}" class="toast-notification toast-${type}">
+                        <div class="toast-content">${message}</div>
+                        <div class="toast-actions">
+                            ${viewCartHtml}
+                            <button class="toast-close">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                var $toast = $(toastHtml);
+                $container.append($toast);
+
+                // Auto-dismiss after 5 seconds
+                var dismissTimeout = setTimeout(function() {
+                    dismissToast($toast);
+                }, 5000);
+
+                // Close button handler
+                $toast.find('.toast-close').on('click', function() {
+                    clearTimeout(dismissTimeout);
+                    dismissToast($toast);
+                });
+            };
+
+            function dismissToast($toast) {
+                $toast.addClass('toast-exit');
+                setTimeout(function() {
+                    $toast.remove();
+                }, 400);
+            }
+
+            // 1. Capture notices on page load
+            $('.woocommerce-message, .woocommerce-info, .woocommerce-error').each(function() {
+                var $notice = $(this);
+                var type = 'info';
+                if ($notice.hasClass('woocommerce-message')) type = 'success';
+                if ($notice.hasClass('woocommerce-error')) type = 'error';
+                
+                showToast($notice.html(), type);
+                $notice.remove(); // Hide original notice
+            });
+
+            // 2. Capture AJAX Added to Cart
+            $(document.body).on('added_to_cart', function(event, fragments, cart_hash, $button) {
+                // WooCommerce usually updates fragments, but we want to show a toast
+                // If the button has a data-product_title, we can build a nice message
+                var productTitle = $button.data('product_title') || 'Product';
+                var message = '“' + productTitle + '” has been added to your cart.';
+                var viewCartUrl = wc_add_to_cart_params ? wc_add_to_cart_params.cart_url : '/cart';
+                
+                showToast(message + ' <a href="' + viewCartUrl + '" class="button wc-forward">View Cart</a>', 'success');
+            });
+        }
+
         // Initialize
         initVariationButtons();
         enhanceQuantityInputs();
+        initToasts();
 
-        // Re-run when WooCommerce updates variations
+        // Re-run when WooCommerce updates
         $(document).on('updated_variation_data updated_wc_div', function() {
             initVariationButtons();
             enhanceQuantityInputs();
+            // Don't re-init toasts here to avoid duplicates
         });
     };
 

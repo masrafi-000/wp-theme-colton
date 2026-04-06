@@ -74,6 +74,9 @@
 	</footer>
 </div><!-- #page -->
 
+<!-- Toast Notifications Container -->
+<div id="toast-container" class="fixed bottom-8 right-8 z-[1000] flex flex-col gap-3 pointer-events-none w-full max-w-[420px] px-6 md:px-0"></div>
+
 <!-- Mini Cart Drawer -->
 <div id="cart-drawer-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[200] opacity-0 invisible transition-all duration-300"></div>
 
