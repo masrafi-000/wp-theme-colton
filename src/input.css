@@ -423,6 +423,68 @@ button.single_add_to_cart_button.button.alt:hover,
   box-shadow: 0 2px 8px rgba(2, 102, 158, 0.2) !important;
 }
 
+/* =============================================================
+   VARIATION SWATCHES — Plain CSS (outside @layer) so Tailwind v4
+   always emits these in output.css
+   ============================================================= */
+.variation-btn {
+  min-width: 80px;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 2px solid #e2e8f0;
+  background-color: #ffffff;
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.variation-btn:hover {
+  border-color: #02669e;
+  color: #02669e;
+  box-shadow: 0 0 0 3px rgba(2, 102, 158, 0.1);
+}
+
+.variation-btn.active-swatch {
+  border-color: #02669e !important;
+  background-color: rgba(2, 102, 158, 0.06) !important;
+  color: #02669e !important;
+  box-shadow: 0 0 0 3px rgba(2, 102, 158, 0.15) !important;
+}
+
+/* =============================================================
+   SIZE SWATCHES — Custom simple product size selection
+   ============================================================= */
+.size-swatch-btn {
+  min-width: 72px;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 2px solid #e2e8f0;
+  background-color: #ffffff;
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.size-swatch-btn:hover {
+  border-color: #02669e;
+  color: #02669e;
+  box-shadow: 0 0 0 3px rgba(2, 102, 158, 0.1);
+}
+
+.size-swatch-btn.active-swatch {
+  border-color: #02669e !important;
+  background-color: rgba(2, 102, 158, 0.08) !important;
+  color: #02669e !important;
+  box-shadow: 0 0 0 3px rgba(2, 102, 158, 0.18) !important;
+  font-weight: 800 !important;
+}
+
 /* Toast Notifications */
 .toast-notification {
   @apply bg-white/95 backdrop-blur-md border border-border rounded-2xl shadow-2xl p-4 flex items-center gap-4 transition-all duration-300 pointer-events-auto overflow-hidden relative min-w-[320px] max-w-full;

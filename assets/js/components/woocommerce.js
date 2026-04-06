@@ -9,43 +9,93 @@
         function initVariationButtons() {
             $('.variations_form').each(function() {
                 var $form = $(this);
+
                 $form.find('.variations select').each(function() {
                     var $select = $(this);
-                    
+
                     // Skip if already initialized
-                    if ($select.next('.variation-buttons-container').length) return;
-                    
-                    var $container = $('<div class="variation-buttons-container flex flex-wrap gap-4 mt-2 mb-6"></div>');
-                    
+                    if ($select.data('variation-buttons-initialized')) return;
+                    $select.data('variation-buttons-initialized', true);
+
+                    var $container = $('<div class="variation-buttons-container flex flex-wrap gap-3 mt-2 mb-6"></div>');
+
                     $select.find('option').each(function() {
                         var $option = $(this);
-                        if (!$option.val()) return;
-                        
-                        var $btn = $('<button type="button" class="variation-btn min-w-[100px] px-6 py-4 rounded-[20px] border border-border bg-white text-black font-bold text-lg transition-all hover:border-primary"></button>');
+                        var optionVal = $option.val();
+
+                        // Skip the placeholder "choose an option" entry
+                        if (!optionVal) return;
+
+                        var $btn = $('<button type="button" class="variation-btn px-6 py-3 rounded-xl border-2 border-border bg-white text-foreground font-bold text-sm tracking-wide transition-all duration-200 hover:border-primary hover:text-primary cursor-pointer"></button>');
                         $btn.text($option.text());
-                        $btn.attr('data-value', $option.val());
-                        
-                        if ($select.val() === $option.val()) {
-                            $btn.addClass('active-swatch');
+                        $btn.attr('data-value', optionVal);
+
+                        // Mark as active if already selected
+                        if ($select.val() === optionVal) {
+                            $btn.addClass('active-swatch border-primary text-primary bg-primary/5');
                         }
-                        
+
                         $btn.on('click', function(e) {
                             e.preventDefault();
-                            $select.val($(this).data('value')).trigger('change');
-                            $container.find('.variation-btn').removeClass('active-swatch');
-                            $(this).addClass('active-swatch');
+                            e.stopPropagation();
+
+                            var selectedVal = $(this).data('value');
+
+                            // Update the hidden native select
+                            $select.val(selectedVal);
+
+                            // Trigger WooCommerce's internal variation update chain
+                            // This fires WC's own ajax check for the variation
+                            $select[0].dispatchEvent(new Event('change', { bubbles: true }));
+                            $select.trigger('change');
+
+                            // Update swatch active state
+                            $container.find('.variation-btn').removeClass('active-swatch border-primary text-primary bg-primary/5');
+                            $(this).addClass('active-swatch border-primary text-primary bg-primary/5');
                         });
-                        
+
                         $container.append($btn);
                     });
-                    
-                    $select.hide();
+
+                    // Visually hide the select but keep it in DOM for WooCommerce
+                    $select.css({
+                        'position': 'absolute',
+                        'width':    '1px',
+                        'height':   '1px',
+                        'overflow': 'hidden',
+                        'clip':     'rect(0,0,0,0)',
+                        'opacity':  '0'
+                    });
+
                     var $label = $select.closest('tr').find('.label label');
                     if ($label.length) {
-                        $label.addClass('block text-xl font-bold text-black mb-4').css('font-family', "'Outfit', sans-serif");
+                        $label.addClass('block text-base font-bold text-foreground mb-3 uppercase tracking-widest').css('font-family', "'Space Grotesk', sans-serif");
                     }
-                    
+
                     $select.after($container);
+                });
+
+                // Sync swatch active state when WooCommerce finds a variation
+                $form.on('found_variation', function(event, variation) {
+                    // The variation was found — ensure the correct swatch is highlighted
+                    $form.find('.variations select').each(function() {
+                        var $select = $(this);
+                        var $container = $select.next('.variation-buttons-container');
+                        var currentVal = $select.val();
+
+                        $container.find('.variation-btn').each(function() {
+                            if ($(this).data('value') === currentVal) {
+                                $(this).addClass('active-swatch border-primary text-primary bg-primary/5');
+                            } else {
+                                $(this).removeClass('active-swatch border-primary text-primary bg-primary/5');
+                            }
+                        });
+                    });
+                });
+
+                // Reset swatches when WC resets the form (e.g., "Clear" is clicked)
+                $form.on('reset_data', function() {
+                    $form.find('.variation-buttons-container .variation-btn').removeClass('active-swatch border-primary text-primary bg-primary/5');
                 });
             });
         }

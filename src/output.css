@@ -2098,6 +2098,10 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
+  .duration-200 {
+    --tw-duration: 200ms;
+    transition-duration: 200ms;
+  }
   .duration-300 {
     --tw-duration: 300ms;
     transition-duration: 300ms;
@@ -2374,13 +2378,6 @@
     &:hover {
       @media (hover: hover) {
         scale: 1.02;
-      }
-    }
-  }
-  .hover\:border-\[\#02669e\] {
-    &:hover {
-      @media (hover: hover) {
-        border-color: #02669e;
       }
     }
   }
@@ -4091,6 +4088,55 @@
 .woocommerce div.product form.cart button.single_add_to_cart_button:active, .single_add_to_cart_button:active {
   transform: translateY(0) !important;
   box-shadow: 0 2px 8px rgba(2, 102, 158, 0.2) !important;
+}
+.variation-btn {
+  min-width: 80px;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 2px solid #e2e8f0;
+  background-color: #ffffff;
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+.variation-btn:hover {
+  border-color: #02669e;
+  color: #02669e;
+  box-shadow: 0 0 0 3px rgba(2, 102, 158, 0.1);
+}
+.variation-btn.active-swatch {
+  border-color: #02669e !important;
+  background-color: rgba(2, 102, 158, 0.06) !important;
+  color: #02669e !important;
+  box-shadow: 0 0 0 3px rgba(2, 102, 158, 0.15) !important;
+}
+.size-swatch-btn {
+  min-width: 72px;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 2px solid #e2e8f0;
+  background-color: #ffffff;
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+.size-swatch-btn:hover {
+  border-color: #02669e;
+  color: #02669e;
+  box-shadow: 0 0 0 3px rgba(2, 102, 158, 0.1);
+}
+.size-swatch-btn.active-swatch {
+  border-color: #02669e !important;
+  background-color: rgba(2, 102, 158, 0.08) !important;
+  color: #02669e !important;
+  box-shadow: 0 0 0 3px rgba(2, 102, 158, 0.18) !important;
+  font-weight: 800 !important;
 }
 .toast-notification {
   pointer-events: auto;

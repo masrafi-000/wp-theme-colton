@@ -117,24 +117,38 @@ add_action( 'woocommerce_single_product_summary', 'colton_research_back_in_stock
 
 /**
  * Custom Size Selection Logic
+ * IMPORTANT: Uses woocommerce_before_add_to_cart_button so the HTML is
+ * rendered INSIDE the form.cart — this ensures selected_product_size is
+ * included in the POST data when the form is submitted.
  */
 function colton_research_add_size_selection() {
     global $product;
+
+    // Only show on simple products (not variable products which have their own selects)
+    if ( $product->get_type() !== 'simple' ) return;
+
     $sizes = array(
-        '10mg' => array('label' => '10mg', 'price_mod' => 1),
-        '20mg' => array('label' => '20mg', 'price_mod' => 1.8),
-        '30mg' => array('label' => '30mg', 'price_mod' => 2.5),
+        '5mg'  => array( 'label' => '5mg',  'price_mod' => 0.6 ),
+        '10mg' => array( 'label' => '10mg', 'price_mod' => 1.0 ),
+        '15mg' => array( 'label' => '15mg', 'price_mod' => 1.4 ),
+        '20mg' => array( 'label' => '20mg', 'price_mod' => 1.8 ),
+        '25mg' => array( 'label' => '25mg', 'price_mod' => 2.2 ),
+        '30mg' => array( 'label' => '30mg', 'price_mod' => 2.6 ),
     );
-    $base_price = $product->get_price();
+    $base_price = (float) $product->get_price();
+    $default_size = '10mg';
     ?>
-    <div class="product-size-selection space-y-4 mb-8">
-        <label class="block text-xl font-bold text-black mb-4 font-body">Size</label>
-        <div class="flex flex-wrap gap-4" id="size-swatches">
-            <?php foreach ( $sizes as $key => $size ) : 
+    <div class="product-size-selection space-y-4 mb-6">
+        <div class="flex items-center justify-between">
+            <label class="block text-sm font-bold uppercase tracking-widest text-foreground">Select Size</label>
+            <span id="size-selected-label" class="text-xs text-primary font-bold uppercase">Selected: <span id="size-selected-text"><?php echo esc_html( $default_size ); ?></span></span>
+        </div>
+        <div class="flex flex-wrap gap-3" id="size-swatches">
+            <?php foreach ( $sizes as $key => $size ) :
                 $display_price = $base_price * $size['price_mod'];
             ?>
-                <button type="button" 
-                        class="size-swatch-btn min-w-[100px] px-6 py-4 rounded-[20px] border border-border bg-white text-black font-bold text-lg transition-all hover:border-[#02669e] <?php echo $key === '10mg' ? 'active-swatch' : ''; ?>" 
+                <button type="button"
+                        class="size-swatch-btn <?php echo $key === $default_size ? 'active-swatch' : ''; ?>"
                         data-size="<?php echo esc_attr( $key ); ?>"
                         data-price="<?php echo esc_attr( $display_price ); ?>"
                         data-formatted-price="<?php echo esc_attr( wc_price( $display_price ) ); ?>">
@@ -142,11 +156,13 @@ function colton_research_add_size_selection() {
                 </button>
             <?php endforeach; ?>
         </div>
-        <input type="hidden" name="selected_product_size" id="selected-product-size" value="10mg">
+        <!-- This input is INSIDE form.cart so it submits with the form -->
+        <input type="hidden" name="selected_product_size" id="selected-product-size" value="<?php echo esc_attr( $default_size ); ?>">
     </div>
-        <?php
+    <?php
 }
-add_action( 'woocommerce_single_product_summary', 'colton_research_add_size_selection', 25 );
+// woocommerce_before_add_to_cart_button fires INSIDE <form class="cart">
+add_action( 'woocommerce_before_add_to_cart_button', 'colton_research_add_size_selection', 10 );
 
 function colton_research_add_cart_item_data( $cart_item_data, $product_id, $variation_id ) {
     if ( isset( $_POST['selected_product_size'] ) ) {
@@ -169,18 +185,36 @@ add_filter( 'woocommerce_get_item_data', 'colton_research_get_item_data', 10, 2 
 
 function colton_research_before_calculate_totals( $cart ) {
     if ( is_admin() && ! defined( 'DOING_AJAX' ) ) return;
+    // Price multipliers keyed to the new size values
+    $price_mods = array(
+        '5mg'  => 0.6,
+        '10mg' => 1.0,
+        '15mg' => 1.4,
+    );
     foreach ( $cart->get_cart() as $cart_item ) {
-        if ( isset( $cart_item['selected_size'] ) ) {
-            $base_price = $cart_item['data']->get_price();
-            $size = $cart_item['selected_size'];
-            $price_mods = array('10mg' => 1, '20mg' => 1.8, '30mg' => 2.5);
-            if ( isset( $price_mods[$size] ) ) {
-                $cart_item['data']->set_price( $base_price * $price_mods[$size] );
-            }
+        if ( isset( $cart_item['selected_size'] ) && isset( $price_mods[ $cart_item['selected_size'] ] ) ) {
+            $base_price = (float) $cart_item['data']->get_price();
+            $mod = $price_mods[ $cart_item['selected_size'] ];
+            $cart_item['data']->set_price( $base_price * $mod );
         }
     }
 }
 add_action( 'woocommerce_before_calculate_totals', 'colton_research_before_calculate_totals', 10, 1 );
+
+/**
+ * Save selected size to order line item meta (database persistence)
+ * This ensures the size appears in admin order view and confirmation emails.
+ */
+function colton_research_save_size_to_order_item( $item, $cart_item_key, $cart_item, $order ) {
+    if ( isset( $cart_item['selected_size'] ) ) {
+        $item->add_meta_data(
+            __( 'Size', 'woocommerce' ),
+            wc_clean( $cart_item['selected_size'] ),
+            true
+        );
+    }
+}
+add_action( 'woocommerce_checkout_create_order_line_item', 'colton_research_save_size_to_order_item', 10, 4 );
 
 /**
  * Product Archive Excerpt
