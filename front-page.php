@@ -308,7 +308,7 @@ get_header();
             </div>
             <div class="text-center lg:text-right">
                 <div class="inline-block p-1 rounded-2xl bg-linear-to-br from-primary/20 to-transparent">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/BPC-157.png" alt="Peptide Vial with COA" class="rounded-xl shadow-xl max-w-md w-full mx-auto" />
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/BPC-157.png" alt="Peptide Vial with COA" class="rounded-xl shadow-xl max-w-md w-full mx-auto" />
                 </div>
             </div>
         </div>
@@ -356,7 +356,7 @@ get_header();
 <section class="bg-[#020617] text-white overflow-hidden">
     <div class="grid grid-cols-1 lg:grid-cols-2 items-center">
         <div class="relative h-[600px] lg:h-[800px] flex items-center justify-center bg-radial-gradient">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/BPC-157.png" alt="Research Peptides" class="w-full h-auto max-w-lg drop-shadow-[0_0_50px_rgba(2,102,158,0.5)]" />
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/BPC-157.png" alt="Research Peptides" class="w-full h-auto max-w-lg drop-shadow-[0_0_50px_rgba(2,102,158,0.5)]" />
         </div>
         <div class="p-12 lg:p-24 space-y-12 text-left">
             <h2 class="text-6xl lg:text-8xl font-extrabold leading-tight">Simple.<br />Powerful.<br />Effective.</h2>
@@ -446,7 +446,7 @@ get_header();
             <!-- Resource 1: 7 Steps -->
             <article class="group bg-white rounded-[32px] overflow-hidden border border-border transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 cursor-pointer" onclick="openResourceModal('reconstitution-guide')">
                 <div class="aspect-[4/3] bg-primary/5 flex items-center justify-center p-12 transition-colors duration-500 group-hover:bg-primary/10">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/BPC-157.png" alt="Reconstitution Guide" class="w-full h-full object-contain drop-shadow-2xl transition-transform duration-700 group-hover:scale-110" />
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/BPC-157.png" alt="Reconstitution Guide" class="w-full h-full object-contain drop-shadow-2xl transition-transform duration-700 group-hover:scale-110" />
                 </div>
                 <div class="p-8 space-y-4">
                     <h3 class="text-xl font-display font-bold text-foreground group-hover:text-primary transition-colors">7 Steps to Reconstitute Peptides</h3>
@@ -460,7 +460,7 @@ get_header();
             <!-- Resource 2: Calculator -->
             <article class="group bg-white rounded-[32px] overflow-hidden border border-border transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 cursor-pointer" onclick="openResourceModal('peptide-calculator')">
                 <div class="aspect-[4/3] bg-primary/5 flex items-center justify-center p-12 transition-colors duration-500 group-hover:bg-primary/10">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/BPC-157.png" alt="Peptide Calculator" class="w-full h-full object-contain drop-shadow-2xl transition-transform duration-700 group-hover:scale-110" />
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/BPC-157.png" alt="Peptide Calculator" class="w-full h-full object-contain drop-shadow-2xl transition-transform duration-700 group-hover:scale-110" />
                 </div>
                 <div class="p-8 space-y-4">
                     <h3 class="text-xl font-display font-bold text-foreground group-hover:text-primary transition-colors">Peptide Calculator</h3>
@@ -474,7 +474,7 @@ get_header();
             <!-- Resource 3: BAC Water -->
             <article class="group bg-white rounded-[32px] overflow-hidden border border-border transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 cursor-pointer" onclick="openResourceModal('bac-water-guide')">
                 <div class="aspect-[4/3] bg-primary/5 flex items-center justify-center p-12 transition-colors duration-500 group-hover:bg-primary/10">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/BPC-157.png" alt="BAC Water Guide" class="w-full h-full object-contain drop-shadow-2xl transition-transform duration-700 group-hover:scale-110" />
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/BPC-157.png" alt="BAC Water Guide" class="w-full h-full object-contain drop-shadow-2xl transition-transform duration-700 group-hover:scale-110" />
                 </div>
                 <div class="p-8 space-y-4">
                     <h3 class="text-xl font-display font-bold text-foreground group-hover:text-primary transition-colors">How Much Bacteriostatic Water to Add to Peptides?</h3>

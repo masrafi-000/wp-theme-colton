@@ -253,9 +253,9 @@
   }
   .woocommerce-checkout,
   .wc-block-checkout {
-    @apply flex flex-col lg:flex-row gap-12;
+    @apply flex flex-col lg:flex-row gap-8 lg:gap-12;
     width: 100%;
-    max-width: none;
+    max-width: 100%;
   }
   #customer_details,
   .wc-block-checkout__main {
@@ -553,6 +553,99 @@ button.single_add_to_cart_button.button.alt:hover,
   }
 }
 
+
+
+/* Desktop Row Layout (1024px+) */
+@media (min-width: 1024px) {
+  .wc-block-components-sidebar-layout {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    gap: 4rem !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .wc-block-checkout__main {
+    @apply min-w-0 !important;
+    flex: 1 1 auto !important;
+    width: auto !important;
+    max-width: 65% !important;
+  }
+
+  .wc-block-checkout__sidebar {
+    @apply shrink-0 sticky top-24 !important;
+    flex: 0 0 420px !important;
+    width: 420px !important;
+    min-width: 420px !important;
+    display: block !important;
+  }
+}
+
+/* Mobile Stacking (<1024px) */
+@media (max-width: 1023px) {
+  .wc-block-components-sidebar-layout {
+    @apply flex flex-col gap-12 !important;
+    display: flex !important;
+    width: 100% !important;
+  }
+  .wc-block-checkout__main, 
+  .wc-block-checkout__sidebar {
+    @apply w-full !important;
+    width: 100% !important;
+    position: relative !important;
+  }
+}
+
+/* Sidebar Item Cleanup & Price Integrity */
+.wc-block-components-order-summary-item__individual-price-and-quantity {
+    display: none !important;
+}
+
+.wc-block-components-order-summary-item {
+    @apply gap-4 py-4 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+}
+
+.wc-block-components-order-summary-item__description {
+    @apply p-0 m-0 !important;
+    flex: 1 1 auto !important;
+    min-width: 180px !important; /* Forces enough room for product name */
+}
+
+.wc-block-components-order-summary-item__image {
+    @apply shrink-0 !important;
+    width: 64px !important;
+    height: 64px !important;
+}
+
+.wc-block-components-order-summary-item__total-price {
+    @apply shrink-0 text-right font-bold !important;
+    width: auto !important;
+    min-width: 100px !important;
+    white-space: nowrap !important; /* Prevents price splitting like $45.0 0 */
+}
+
+/* Fix 4: Styling blocks for high-end boutique feel */
+.wc-block-components-checkout-step {
+    @apply bg-white border border-border rounded-2xl p-6 md:p-8 mb-8 !important;
+}
+
+.wc-block-components-checkout-step__title {
+    @apply font-display font-bold text-xl mb-6 !important;
+}
+
+.wc-block-components-checkout-place-order-button {
+    @apply bg-[#1e293b] hover:bg-[#0f172a] text-white font-bold py-5 rounded-xl uppercase tracking-[0.2em] text-[13px] transition-all duration-300 w-full !important;
+}
+
+/* Container constraints */
+.wc-block-checkout {
+    @apply w-full max-w-7xl mx-auto px-4 !important;
+}
 
 div#page {
     width: 100%;
