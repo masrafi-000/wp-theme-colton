@@ -192,7 +192,57 @@ function my_popup_form_handler()
             ));
         }
 
-        echo 'success';
     }
     wp_die();
 }
+
+/**
+ * AJAX: get cart item count
+ */
+function mytheme_get_cart_count() {
+    $count = class_exists( 'WooCommerce' ) ? WC()->cart->get_cart_contents_count() : 0;
+    wp_send_json( [ 'count' => $count ] );
+}
+add_action( 'wp_ajax_get_cart_count',        'mytheme_get_cart_count' );
+add_action( 'wp_ajax_nopriv_get_cart_count', 'mytheme_get_cart_count' );
+
+/**
+ * AJAX: WooCommerce Search Products (JSON)
+ * Required by the new header.js search logic
+ */
+function mytheme_woocommerce_search_products() {
+    $term = sanitize_text_field( $_GET['term'] );
+    
+    if ( empty( $term ) ) {
+        wp_send_json_success( [] );
+    }
+
+    $args = array(
+        'post_type'      => 'product',
+        'post_status'    => 'publish',
+        's'              => $term,
+        'posts_per_page' => 10,
+    );
+
+    $query = new WP_Query( $args );
+    $results = [];
+
+    if ( $query->have_posts() ) {
+        while ( $query->have_posts() ) {
+            $query->the_post();
+            global $product;
+            
+            $results[] = [
+                'url'   => get_permalink(),
+                'name'  => get_the_title(),
+                'price' => $product->get_price_html(),
+                'image' => get_the_post_thumbnail_url( get_the_ID(), 'thumbnail' )
+            ];
+        }
+    }
+
+    wp_reset_postdata();
+    wp_send_json_success( [ 'success' => true, 'data' => $results ] );
+}
+add_action( 'wp_ajax_woocommerce_search_products',        'mytheme_woocommerce_search_products' );
+add_action( 'wp_ajax_nopriv_woocommerce_search_products', 'mytheme_woocommerce_search_products' );
