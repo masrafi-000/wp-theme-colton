@@ -1088,6 +1088,9 @@
   .overflow-x-auto {
     overflow-x: auto;
   }
+  .overflow-x-hidden {
+    overflow-x: hidden;
+  }
   .overflow-y-auto {
     overflow-y: auto;
   }
@@ -4106,7 +4109,7 @@
   color: #ffffff;
   padding: 1rem 2.5rem;
   border-radius: 0.75rem;
-  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-family: var(--font-display, "Space Grotesk", sans-serif);
   font-weight: 700;
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -4394,17 +4397,30 @@
   font-weight: var(--font-weight-bold);
 }
 .wc-block-components-checkout-place-order-button {
+  display: flex;
   width: 100%;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
   border-radius: var(--radius-xl);
-  background-color: #1e293b;
-  padding-block: calc(var(--spacing) * 5);
+  --tw-border-style: none;
+  border-style: none;
+  background-color: var(--color-brand-blue);
+  padding-inline: calc(var(--spacing) * 6);
+  padding-block: calc(var(--spacing) * 4);
   font-size: 13px;
   --tw-font-weight: var(--font-weight-bold);
   font-weight: var(--font-weight-bold);
-  --tw-tracking: 0.2em;
-  letter-spacing: 0.2em;
+  --tw-tracking: 0.15em;
+  letter-spacing: 0.15em;
   color: var(--color-white);
   text-transform: uppercase;
+  --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+  box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  --tw-shadow-color: color-mix(in srgb, #02669e 20%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-brand-blue) 20%, transparent) var(--tw-shadow-alpha), transparent);
+  }
   transition-property: all;
   transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
   transition-duration: var(--tw-duration, var(--default-transition-duration));
@@ -4412,7 +4428,64 @@
   transition-duration: 300ms;
   &:hover {
     @media (hover: hover) {
-      background-color: #0f172a;
+      background-color: var(--color-brand-blue-dark);
+    }
+  }
+}
+.wc-block-components-button:not(.is-link) {
+  cursor: pointer;
+  border-radius: var(--radius-lg);
+  --tw-border-style: none;
+  border-style: none;
+  background-color: var(--color-brand-blue);
+  padding-inline: calc(var(--spacing) * 6);
+  padding-block: calc(var(--spacing) * 3);
+  font-size: 12px;
+  --tw-font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold);
+  --tw-tracking: 0.1em;
+  letter-spacing: 0.1em;
+  color: var(--color-white);
+  text-transform: uppercase;
+  --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+  box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  --tw-shadow-color: color-mix(in srgb, #02669e 20%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-brand-blue) 20%, transparent) var(--tw-shadow-alpha), transparent);
+  }
+  transition-property: all;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  --tw-duration: 300ms;
+  transition-duration: 300ms;
+  &:hover {
+    @media (hover: hover) {
+      background-color: var(--color-brand-blue-dark);
+    }
+  }
+}
+.wc-block-components-button.is-link, .wc-block-checkout__return-to-cart {
+  --tw-border-style: none;
+  border-style: none;
+  background-color: transparent;
+  padding-inline: calc(var(--spacing) * 0);
+  padding-block: calc(var(--spacing) * 2);
+  color: var(--color-brand-blue);
+  --tw-shadow: 0 0 #0000;
+  box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  transition-property: all;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  --tw-duration: 300ms;
+  transition-duration: 300ms;
+  &:hover {
+    @media (hover: hover) {
+      color: var(--color-brand-blue-dark);
+    }
+  }
+  &:hover {
+    @media (hover: hover) {
+      text-decoration-line: underline;
     }
   }
 }

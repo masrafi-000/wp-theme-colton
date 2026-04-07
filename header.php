@@ -7,7 +7,7 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class('bg-background text-foreground font-body antialiased'); ?>>
+<body <?php body_class('bg-background text-foreground font-body antialiased overflow-x-hidden'); ?>>
 <?php wp_body_open(); ?>
 
 <div id="page" class="site min-h-screen flex flex-col">

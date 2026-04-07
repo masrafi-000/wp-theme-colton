@@ -386,41 +386,44 @@
 .woocommerce div.product form.cart .single_add_to_cart_button,
 button.single_add_to_cart_button.button.alt,
 .single_add_to_cart_button {
-  background-color: #02669e  ;
-  color: #ffffff  ;
-  padding: 1rem 2.5rem  ;
-  border-radius: 0.75rem  ;
-  font-family: var(--font-display, 'Space Grotesk', sans-serif)  ;
-  font-weight: 700  ;
-  font-size: 0.75rem  ;
-  text-transform: uppercase  ;
-  letter-spacing: 0.15em  ;
-  height: 3.5rem  ;
-  display: inline-flex  ;
-  align-items: center  ;
-  justify-content: center  ;
-  gap: 0.5rem  ;
-  cursor: pointer  ;
-  border: none  ;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease  ;
-  box-shadow: 0 4px 14px rgba(2, 102, 158, 0.3)  ;
-  margin-top: 1rem  ;
-  min-width: 200px  ;
+  background-color: #02669e;
+  color: #ffffff;
+  padding: 1rem 2.5rem;
+  border-radius: 0.75rem;
+  font-family: var(--font-display, "Space Grotesk", sans-serif);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  height: 3.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  border: none;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
+  box-shadow: 0 4px 14px rgba(2, 102, 158, 0.3);
+  margin-top: 1rem;
+  min-width: 200px;
 }
 
 .woocommerce div.product form.cart button.single_add_to_cart_button:hover,
 .woocommerce div.product form.cart .single_add_to_cart_button:hover,
 button.single_add_to_cart_button.button.alt:hover,
 .single_add_to_cart_button:hover {
-  background-color: #014d7a  ;
-  box-shadow: 0 8px 24px rgba(2, 102, 158, 0.45)  ;
-  transform: translateY(-1px)  ;
+  background-color: #014d7a;
+  box-shadow: 0 8px 24px rgba(2, 102, 158, 0.45);
+  transform: translateY(-1px);
 }
 
 .woocommerce div.product form.cart button.single_add_to_cart_button:active,
 .single_add_to_cart_button:active {
-  transform: translateY(0)  ;
-  box-shadow: 0 2px 8px rgba(2, 102, 158, 0.2)  ;
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(2, 102, 158, 0.2);
 }
 
 /* =============================================================
@@ -438,7 +441,11 @@ button.single_add_to_cart_button.button.alt:hover,
   font-size: 0.875rem;
   letter-spacing: 0.025em;
   cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .variation-btn:hover {
@@ -448,10 +455,10 @@ button.single_add_to_cart_button.button.alt:hover,
 }
 
 .variation-btn.active-swatch {
-  border-color: #02669e  ;
-  background-color: rgba(2, 102, 158, 0.06)  ;
-  color: #02669e  ;
-  box-shadow: 0 0 0 3px rgba(2, 102, 158, 0.15)  ;
+  border-color: #02669e;
+  background-color: rgba(2, 102, 158, 0.06);
+  color: #02669e;
+  box-shadow: 0 0 0 3px rgba(2, 102, 158, 0.15);
 }
 
 /* =============================================================
@@ -468,7 +475,11 @@ button.single_add_to_cart_button.button.alt:hover,
   font-size: 0.875rem;
   letter-spacing: 0.025em;
   cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .size-swatch-btn:hover {
@@ -478,11 +489,11 @@ button.single_add_to_cart_button.button.alt:hover,
 }
 
 .size-swatch-btn.active-swatch {
-  border-color: #02669e  ;
-  background-color: rgba(2, 102, 158, 0.08)  ;
-  color: #02669e  ;
-  box-shadow: 0 0 0 3px rgba(2, 102, 158, 0.18)  ;
-  font-weight: 800  ;
+  border-color: #02669e;
+  background-color: rgba(2, 102, 158, 0.08);
+  color: #02669e;
+  box-shadow: 0 0 0 3px rgba(2, 102, 158, 0.18);
+  font-weight: 800;
 }
 
 /* Toast Notifications */
@@ -553,101 +564,110 @@ button.single_add_to_cart_button.button.alt:hover,
   }
 }
 
-
-
 /* Desktop Row Layout (1024px+) */
 @media (min-width: 1024px) {
   .wc-block-components-sidebar-layout {
-    display: flex  ;
-    flex-direction: row  ;
-    flex-wrap: nowrap  ;
-    align-items: flex-start  ;
-    gap: 4rem  ;
-    width: 100%  ;
-    max-width: none  ;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    gap: 4rem;
+    width: 100%;
+    max-width: none;
   }
 
   .wc-block-checkout__main {
-    @apply min-w-0  ;
-    flex: 1 1 auto  ;
-    width: auto  ;
-    max-width: 65%  ;
+    @apply min-w-0;
+    flex: 1 1 auto;
+    width: auto;
+    max-width: 65%;
   }
 
   .wc-block-checkout__sidebar {
-    @apply shrink-0 sticky top-24  ;
-    flex: 0 0 420px  ;
-    width: 420px  ;
-    min-width: 420px  ;
-    display: block  ;
+    @apply shrink-0 sticky top-24;
+    flex: 0 0 420px;
+    width: 420px;
+    min-width: 420px;
+    display: block;
   }
 }
 
 /* Mobile Stacking (<1024px) */
 @media (max-width: 1023px) {
   .wc-block-components-sidebar-layout {
-    @apply flex flex-col gap-12  ;
-    display: flex  ;
-    width: 100%  ;
+    @apply flex flex-col gap-12;
+    display: flex;
+    width: 100%;
   }
-  .wc-block-checkout__main, 
+  .wc-block-checkout__main,
   .wc-block-checkout__sidebar {
-    @apply w-full  ;
-    width: 100%  ;
-    position: relative  ;
+    @apply w-full;
+    width: 100%;
+    position: relative;
   }
 }
 
 /* Sidebar Item Cleanup & Price Integrity */
 .wc-block-components-order-summary-item__individual-price-and-quantity,
 .wc-block-components-order-summary-item__individual-prices {
-    display: none  ;
+  display: none;
 }
 
 .wc-block-components-order-summary-item {
-    @apply gap-4 py-4  ;
-    display: flex  ;
-    flex-direction: row  ;
-    align-items: center  ;
+  @apply gap-4 py-4;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .wc-block-components-order-summary-item__description {
-    @apply p-0 m-0  ;
-    flex: 1 1 auto  ;
-    min-width: 180px  ; /* Forces enough room for product name */
+  @apply p-0 m-0;
+  flex: 1 1 auto;
+  min-width: 180px; /* Forces enough room for product name */
 }
 
 .wc-block-components-order-summary-item__image {
-    @apply shrink-0  ;
-    width: 64px  ;
-    height: 64px  ;
+  @apply shrink-0;
+  width: 64px;
+  height: 64px;
 }
 
 .wc-block-components-order-summary-item__total-price {
-    @apply shrink-0 text-right font-bold  ;
-    width: auto  ;
-    min-width: 100px  ;
-    white-space: nowrap  ; /* Prevents price splitting like $45.0 0 */
+  @apply shrink-0 text-right font-bold;
+  width: auto;
+  min-width: 100px;
+  white-space: nowrap; /* Prevents price splitting like $45.0 0 */
 }
 
 /* Fix 4: Styling blocks for high-end boutique feel */
 .wc-block-components-checkout-step {
-    @apply bg-white border border-border rounded-2xl p-6 md:p-8 mb-8  ;
+  @apply bg-white border border-border rounded-2xl p-6 md:p-8 mb-8;
 }
 
 .wc-block-components-checkout-step__title {
-    @apply font-display font-bold text-xl mb-6  ;
+  @apply font-display font-bold text-xl mb-6;
 }
 
 .wc-block-components-checkout-place-order-button {
-    @apply bg-[#1e293b] hover:bg-[#0f172a] text-white font-bold py-5 rounded-xl uppercase tracking-[0.2em] text-[13px] transition-all duration-300 w-full  ;
+  @apply bg-brand-blue hover:bg-brand-blue-dark text-white font-bold py-4 px-6 rounded-xl uppercase tracking-[0.15em] text-[13px] transition-all duration-300 shadow-md shadow-brand-blue/20 flex items-center justify-center border-none w-full cursor-pointer;
 }
+
+.wc-block-components-button:not(.is-link) {
+  @apply bg-brand-blue hover:bg-brand-blue-dark text-white font-bold py-3 px-6 rounded-lg uppercase tracking-[0.1em] text-[12px] transition-all duration-300 shadow-md shadow-brand-blue/20 border-none cursor-pointer;
+}
+
+.wc-block-components-button.is-link,
+.wc-block-checkout__return-to-cart {
+  @apply bg-transparent text-brand-blue hover:text-brand-blue-dark shadow-none border-none py-2 px-0 hover:underline transition-all duration-300;
+}
+
+
 
 /* Container constraints */
 .wc-block-checkout {
-    @apply w-full max-w-7xl mx-auto px-4  ;
+  @apply w-full max-w-7xl mx-auto px-4;
 }
 
 div#page {
-    width: 100%;
+  width: 100%;
 }
