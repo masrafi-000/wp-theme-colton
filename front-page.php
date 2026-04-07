@@ -151,8 +151,8 @@ get_header();
 <!-- Trust Features Section -->
 <section class="py-10 bg-white border-b border-[#f1f5f9] mt-0 reveal-on-scroll">
     <div class="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-5 max-w-[1400px] mx-auto px-[6%]">
-        <div class="trust-item group p-4 rounded-2xl transition-all duration-300 hover:bg-secondary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 cursor-default">
-            <div class="trust-icon-box transition-transform duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-white">
+        <div class="trust-item group p-4 rounded-2xl transition-all duration-300 hover:bg-secondary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 cursor-default flex items-center gap-3">
+            <div class="trust-icon-box transition-transform duration-300 bg-secondary group-hover:scale-110 group-hover:bg-primary group-hover:text-white p-5 rounded-2xl">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
             </div>
             <div class="trust-content">
@@ -160,8 +160,9 @@ get_header();
                 <p>Orders over $200</p>
             </div>
         </div>
-        <div class="trust-item group p-4 rounded-2xl transition-all duration-300 hover:bg-secondary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 cursor-default">
-            <div class="trust-icon-box transition-transform duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-white">
+
+        <div class="trust-item group p-4 rounded-2xl transition-all duration-300 hover:bg-secondary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 cursor-default flex items-center gap-3">
+            <div class="trust-icon-box transition-transform duration-300 bg-secondary group-hover:scale-110 group-hover:bg-primary group-hover:text-white p-5 rounded-2xl">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
             </div>
             <div class="trust-content">
@@ -169,8 +170,9 @@ get_header();
                 <p>HPLC verified</p>
             </div>
         </div>
-        <div class="trust-item group p-4 rounded-2xl transition-all duration-300 hover:bg-secondary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 cursor-default">
-            <div class="trust-icon-box transition-transform duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-white">
+
+        <div class="trust-item group p-4 rounded-2xl transition-all duration-300 hover:bg-secondary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 cursor-default flex items-center gap-3">
+            <div class="trust-icon-box transition-transform duration-300 bg-secondary group-hover:scale-110 group-hover:bg-primary group-hover:text-white p-5 rounded-2xl">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
             </div>
             <div class="trust-content">
@@ -178,8 +180,9 @@ get_header();
                 <p>256-bit SSL encryption</p>
             </div>
         </div>
-        <div class="trust-item group p-4 rounded-2xl transition-all duration-300 hover:bg-secondary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 cursor-default">
-            <div class="trust-icon-box transition-transform duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-white">
+
+        <div class="trust-item group p-4 rounded-2xl transition-all duration-300 hover:bg-secondary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 cursor-default flex items-center gap-3">
+            <div class="trust-icon-box transition-transform duration-300 bg-secondary group-hover:scale-110 group-hover:bg-primary group-hover:text-white p-5 rounded-2xl">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
             </div>
             <div class="trust-content">
