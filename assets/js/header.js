@@ -72,7 +72,7 @@ jQuery(function ($) {
 
     function openSearch() {
         closeSidebar();
-        closeMobileMenu();
+        closeMenu();
         $('#search-dropdown')
             .removeClass('opacity-0 invisible translate-y-2')
             .addClass('opacity-100 visible translate-y-0');
@@ -81,7 +81,7 @@ jQuery(function ($) {
 
     function closeSearch() {
         $('#search-dropdown')
-            .addClass('opacity-0 invisible translate-y-2')
+            .addClass('opacity-0 invisible translate-y-4 md:translate-y-2')
             .removeClass('opacity-100 visible translate-y-0');
     }
 
@@ -90,6 +90,8 @@ jQuery(function ($) {
         var isOpen = !$('#search-dropdown').hasClass('invisible');
         isOpen ? closeSearch() : openSearch();
     });
+
+    $('#search-close-button').on('click', closeSearch);
 
     // Live search (WooCommerce AJAX)
     var searchTimer;

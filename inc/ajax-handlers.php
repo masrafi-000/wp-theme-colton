@@ -229,8 +229,8 @@ function mytheme_woocommerce_search_products() {
 
     if ( $query->have_posts() ) {
         while ( $query->have_posts() ) {
-            $query->the_post();
-            global $product;
+            $product = wc_get_product( get_the_ID() );
+            if ( ! $product ) continue;
             
             $results[] = [
                 'url'   => get_permalink(),
@@ -242,7 +242,7 @@ function mytheme_woocommerce_search_products() {
     }
 
     wp_reset_postdata();
-    wp_send_json_success( [ 'success' => true, 'data' => $results ] );
+    wp_send_json_success( $results );
 }
 add_action( 'wp_ajax_woocommerce_search_products',        'mytheme_woocommerce_search_products' );
 add_action( 'wp_ajax_nopriv_woocommerce_search_products', 'mytheme_woocommerce_search_products' );

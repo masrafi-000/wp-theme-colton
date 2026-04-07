@@ -121,12 +121,19 @@
                     <button class="text-muted-foreground hover:text-primary transition-all duration-200 p-2 rounded-full hover:bg-secondary" id="search-toggle" aria-label="Search">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                     </button>
-                    <div id="search-dropdown" class="absolute right-0 top-full mt-2 w-[calc(100vw-2rem)] sm:w-80 bg-card border border-border rounded-xl shadow-2xl overflow-hidden opacity-0 invisible translate-y-2 transition-all duration-300 z-[140]">
+                    <div id="search-dropdown" class="fixed md:absolute inset-x-4 top-20 md:top-full md:right-0 md:inset-x-auto md:w-96 bg-card border border-border rounded-xl shadow-2xl overflow-hidden opacity-0 invisible translate-y-4 md:translate-y-2 transition-all duration-300 z-[170]">
+                        <!-- Search Header (Mobile Only) -->
+                        <div class="flex items-center justify-between px-4 py-3 border-b border-border md:hidden bg-secondary/20">
+                            <span class="text-xs font-bold uppercase tracking-widest text-muted-foreground">Search</span>
+                            <button id="search-close-button" class="text-muted-foreground hover:text-primary transition-colors p-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                            </button>
+                        </div>
                         <div class="p-4 border-b border-border">
                             <input type="text" placeholder="Search products..." class="w-full bg-secondary/50 border border-border rounded-lg py-2 px-4 text-sm focus:outline-none focus:border-primary/50" id="search-input" autocomplete="off">
                         </div>
-                        <div id="search-results" class="max-h-80 overflow-y-auto">
-                            <div class="p-6 text-center text-muted-foreground text-xs">Start typing to search…</div>
+                        <div id="search-results" class="max-h-[60vh] md:max-h-80 overflow-y-auto bg-card">
+                            <div class="p-6 text-center text-muted-foreground text-xs font-medium">Start typing to search…</div>
                         </div>
                     </div>
                 </div>
