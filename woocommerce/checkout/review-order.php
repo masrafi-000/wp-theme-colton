@@ -33,6 +33,13 @@ defined( 'ABSPATH' ) || exit;
                                 <?php 
                                 // Get the name but strip any potential duplicate price appended by filters/plugins
                                 $item_name = apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key );
+                                
+                                // Strip out price elements that plugins might have appended
+                                $item_name = preg_replace('/<del>.*?<\/del>/i', '', $item_name);
+                                $item_name = preg_replace('/<span class="woocommerce-Price-amount amount"[^>]*>.*?<\/span>/i', '', $item_name);
+                                // Remove trailing hyphens (e.g. from "Product - ")
+                                $item_name = preg_replace('/(\s*-\s*)$/', '', trim($item_name));
+
                                 echo wp_kses_post( $item_name ); 
                                 ?>
                             </p>

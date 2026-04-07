@@ -677,9 +677,6 @@
   .min-h-screen {
     min-height: 100vh;
   }
-  .w-1 {
-    width: calc(var(--spacing) * 1);
-  }
   .w-1\.5 {
     width: calc(var(--spacing) * 1.5);
   }
@@ -806,9 +803,6 @@
   .flex-1 {
     flex: 1;
   }
-  .flex-shrink {
-    flex-shrink: 1;
-  }
   .flex-shrink-0 {
     flex-shrink: 0;
   }
@@ -823,9 +817,6 @@
   }
   .grow {
     flex-grow: 1;
-  }
-  .border-collapse {
-    border-collapse: collapse;
   }
   .translate-x-full {
     --tw-translate-x: 100%;
@@ -879,9 +870,6 @@
   }
   .cursor-pointer {
     cursor: pointer;
-  }
-  .resize {
-    resize: both;
   }
   .resize-none {
     resize: none;
@@ -963,13 +951,6 @@
   }
   .gap-\[15px\] {
     gap: 15px;
-  }
-  .space-y-0 {
-    :where(& > :not(:last-child)) {
-      --tw-space-y-reverse: 0;
-      margin-block-start: calc(calc(var(--spacing) * 0) * var(--tw-space-y-reverse));
-      margin-block-end: calc(calc(var(--spacing) * 0) * calc(1 - var(--tw-space-y-reverse)));
-    }
   }
   .space-y-0\.5 {
     :where(& > :not(:last-child)) {
@@ -1242,9 +1223,6 @@
       border-color: color-mix(in oklab, var(--color-primary) 20%, transparent);
     }
   }
-  .border-red-500 {
-    border-color: var(--color-red-500);
-  }
   .border-red-500\/20 {
     border-color: color-mix(in srgb, oklch(63.7% 0.237 25.331) 20%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -1407,9 +1385,6 @@
   .bg-red-100 {
     background-color: var(--color-red-100);
   }
-  .bg-red-500 {
-    background-color: var(--color-red-500);
-  }
   .bg-red-500\/5 {
     background-color: color-mix(in srgb, oklch(63.7% 0.237 25.331) 5%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -1487,10 +1462,6 @@
   .bg-\[radial-gradient\(circle_at_0\%_0\%\,\#0ea5e9_0\%\,\#0b1120_55\%\,\#020617_100\%\)\] {
     background-image: radial-gradient(circle at 0% 0%,#0ea5e9 0%,#0b1120 55%,#020617 100%);
   }
-  .from-primary {
-    --tw-gradient-from: var(--color-primary);
-    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-  }
   .from-primary\/5 {
     --tw-gradient-from: color-mix(in srgb, #02669e 5%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -1503,10 +1474,6 @@
     @supports (color: color-mix(in lab, red, red)) {
       --tw-gradient-from: color-mix(in oklab, var(--color-primary) 20%, transparent);
     }
-    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-  }
-  .from-white {
-    --tw-gradient-from: var(--color-white);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
   .from-white\/10 {
@@ -1585,9 +1552,6 @@
   }
   .px-\[clamp\(32px\,4vw\,56px\)\] {
     padding-inline: clamp(32px, 4vw, 56px);
-  }
-  .py-0 {
-    padding-block: calc(var(--spacing) * 0);
   }
   .py-0\.5 {
     padding-block: calc(var(--spacing) * 0.5);
@@ -2012,9 +1976,6 @@
   .no-underline {
     text-decoration-line: none;
   }
-  .underline {
-    text-decoration-line: underline;
-  }
   .antialiased {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -2074,34 +2035,16 @@
     --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
-  .shadow-brand-blue {
-    --tw-shadow-color: #02669e;
-    @supports (color: color-mix(in lab, red, red)) {
-      --tw-shadow-color: color-mix(in oklab, var(--color-brand-blue) var(--tw-shadow-alpha), transparent);
-    }
-  }
   .shadow-brand-blue\/20 {
     --tw-shadow-color: color-mix(in srgb, #02669e 20%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-brand-blue) 20%, transparent) var(--tw-shadow-alpha), transparent);
     }
   }
-  .shadow-primary {
-    --tw-shadow-color: #02669e;
-    @supports (color: color-mix(in lab, red, red)) {
-      --tw-shadow-color: color-mix(in oklab, var(--color-primary) var(--tw-shadow-alpha), transparent);
-    }
-  }
   .shadow-primary\/20 {
     --tw-shadow-color: color-mix(in srgb, #02669e 20%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-primary) 20%, transparent) var(--tw-shadow-alpha), transparent);
-    }
-  }
-  .shadow-slate-900 {
-    --tw-shadow-color: oklch(20.8% 0.042 265.755);
-    @supports (color: color-mix(in lab, red, red)) {
-      --tw-shadow-color: color-mix(in oklab, var(--color-slate-900) var(--tw-shadow-alpha), transparent);
     }
   }
   .shadow-slate-900\/10 {
@@ -2112,10 +2055,6 @@
   }
   .ring-brand-blue {
     --tw-ring-color: var(--color-brand-blue);
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
   }
   .blur-3xl {
     --tw-blur: blur(var(--blur-3xl));
@@ -2133,9 +2072,6 @@
   }
   .\[filter\:drop-shadow\(0_0_100px_rgba\(2\,102_158\,0\.3\)\)\] {
     filter: drop-shadow(0 0 100px rgba(2,102 158,0.3));
-  }
-  .filter {
-    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
   }
   .backdrop-blur-\[4px\] {
     --tw-backdrop-blur: blur(4px);
@@ -2156,15 +2092,6 @@
     --tw-backdrop-blur: blur(var(--blur-sm));
     -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
     backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
-  }
-  .backdrop-filter {
-    -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
-    backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
-  }
-  .transition {
-    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-    transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
   .transition-all {
     transition-property: all;
@@ -2204,10 +2131,6 @@
   .ease-in-out {
     --tw-ease: var(--ease-in-out);
     transition-timing-function: var(--ease-in-out);
-  }
-  .ease-out {
-    --tw-ease: var(--ease-out);
-    transition-timing-function: var(--ease-out);
   }
   .\[text-shadow\:0_2px_8px_rgba\(0\,0\,0\,0\.4\)\] {
     text-shadow: 0 2px 8px rgba(0,0,0,0.4);
@@ -3092,11 +3015,6 @@
       display: flex;
     }
   }
-  .md\:hidden {
-    @media (width >= 48rem) {
-      display: none;
-    }
-  }
   .md\:h-16 {
     @media (width >= 48rem) {
       height: calc(var(--spacing) * 16);
@@ -3276,11 +3194,6 @@
   .lg\:w-\[45\%\] {
     @media (width >= 64rem) {
       width: 45%;
-    }
-  }
-  .lg\:w-\[480px\] {
-    @media (width >= 64rem) {
-      width: 480px;
     }
   }
   .lg\:-translate-x-1\/2 {
@@ -3970,12 +3883,15 @@
   .woocommerce-checkout, .wc-block-checkout {
     display: flex;
     flex-direction: column;
-    gap: calc(var(--spacing) * 12);
+    gap: calc(var(--spacing) * 8);
     @media (width >= 64rem) {
       flex-direction: row;
     }
+    @media (width >= 64rem) {
+      gap: calc(var(--spacing) * 12);
+    }
     width: 100%;
-    max-width: none;
+    max-width: 100%;
   }
   #customer_details, .wc-block-checkout__main {
     flex-grow: 1;
@@ -4186,35 +4102,35 @@
   }
 }
 .woocommerce div.product form.cart button.single_add_to_cart_button, .woocommerce div.product form.cart .single_add_to_cart_button, button.single_add_to_cart_button.button.alt, .single_add_to_cart_button {
-  background-color: #02669e !important;
-  color: #ffffff !important;
-  padding: 1rem 2.5rem !important;
-  border-radius: 0.75rem !important;
-  font-family: var(--font-display, 'Space Grotesk', sans-serif) !important;
-  font-weight: 700 !important;
-  font-size: 0.75rem !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.15em !important;
-  height: 3.5rem !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 0.5rem !important;
-  cursor: pointer !important;
-  border: none !important;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease !important;
-  box-shadow: 0 4px 14px rgba(2, 102, 158, 0.3) !important;
-  margin-top: 1rem !important;
-  min-width: 200px !important;
+  background-color: #02669e;
+  color: #ffffff;
+  padding: 1rem 2.5rem;
+  border-radius: 0.75rem;
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  height: 3.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 14px rgba(2, 102, 158, 0.3);
+  margin-top: 1rem;
+  min-width: 200px;
 }
 .woocommerce div.product form.cart button.single_add_to_cart_button:hover, .woocommerce div.product form.cart .single_add_to_cart_button:hover, button.single_add_to_cart_button.button.alt:hover, .single_add_to_cart_button:hover {
-  background-color: #014d7a !important;
-  box-shadow: 0 8px 24px rgba(2, 102, 158, 0.45) !important;
-  transform: translateY(-1px) !important;
+  background-color: #014d7a;
+  box-shadow: 0 8px 24px rgba(2, 102, 158, 0.45);
+  transform: translateY(-1px);
 }
 .woocommerce div.product form.cart button.single_add_to_cart_button:active, .single_add_to_cart_button:active {
-  transform: translateY(0) !important;
-  box-shadow: 0 2px 8px rgba(2, 102, 158, 0.2) !important;
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(2, 102, 158, 0.2);
 }
 .variation-btn {
   min-width: 80px;
@@ -4235,10 +4151,10 @@
   box-shadow: 0 0 0 3px rgba(2, 102, 158, 0.1);
 }
 .variation-btn.active-swatch {
-  border-color: #02669e !important;
-  background-color: rgba(2, 102, 158, 0.06) !important;
-  color: #02669e !important;
-  box-shadow: 0 0 0 3px rgba(2, 102, 158, 0.15) !important;
+  border-color: #02669e;
+  background-color: rgba(2, 102, 158, 0.06);
+  color: #02669e;
+  box-shadow: 0 0 0 3px rgba(2, 102, 158, 0.15);
 }
 .size-swatch-btn {
   min-width: 72px;
@@ -4259,11 +4175,11 @@
   box-shadow: 0 0 0 3px rgba(2, 102, 158, 0.1);
 }
 .size-swatch-btn.active-swatch {
-  border-color: #02669e !important;
-  background-color: rgba(2, 102, 158, 0.08) !important;
-  color: #02669e !important;
-  box-shadow: 0 0 0 3px rgba(2, 102, 158, 0.18) !important;
-  font-weight: 800 !important;
+  border-color: #02669e;
+  background-color: rgba(2, 102, 158, 0.08);
+  color: #02669e;
+  box-shadow: 0 0 0 3px rgba(2, 102, 158, 0.18);
+  font-weight: 800;
 }
 .toast-notification {
   pointer-events: auto;
@@ -4388,6 +4304,123 @@
     opacity: 0;
     transform: translateX(50px) scale(0.9);
   }
+}
+@media (min-width: 1024px) {
+  .wc-block-components-sidebar-layout {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    gap: 4rem;
+    width: 100%;
+    max-width: none;
+  }
+  .wc-block-checkout__main {
+    min-width: calc(var(--spacing) * 0);
+    flex: 1 1 auto;
+    width: auto;
+    max-width: 65%;
+  }
+  .wc-block-checkout__sidebar {
+    position: sticky;
+    top: calc(var(--spacing) * 24);
+    flex-shrink: 0;
+    flex: 0 0 420px;
+    width: 420px;
+    min-width: 420px;
+    display: block;
+  }
+}
+@media (max-width: 1023px) {
+  .wc-block-components-sidebar-layout {
+    flex-direction: column;
+    gap: calc(var(--spacing) * 12);
+    display: flex;
+    width: 100%;
+  }
+  .wc-block-checkout__main, .wc-block-checkout__sidebar {
+    width: 100%;
+    position: relative;
+  }
+}
+.wc-block-components-order-summary-item__individual-price-and-quantity, .wc-block-components-order-summary-item__individual-prices {
+  display: none;
+}
+.wc-block-components-order-summary-item {
+  gap: calc(var(--spacing) * 4);
+  padding-block: calc(var(--spacing) * 4);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.wc-block-components-order-summary-item__description {
+  margin: calc(var(--spacing) * 0);
+  padding: calc(var(--spacing) * 0);
+  flex: 1 1 auto;
+  min-width: 180px;
+}
+.wc-block-components-order-summary-item__image {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+}
+.wc-block-components-order-summary-item__total-price {
+  flex-shrink: 0;
+  text-align: right;
+  --tw-font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold);
+  width: auto;
+  min-width: 100px;
+  white-space: nowrap;
+}
+.wc-block-components-checkout-step {
+  margin-bottom: calc(var(--spacing) * 8);
+  border-radius: var(--radius-2xl);
+  border-style: var(--tw-border-style);
+  border-width: 1px;
+  border-color: var(--color-border);
+  background-color: var(--color-white);
+  padding: calc(var(--spacing) * 6);
+  @media (width >= 48rem) {
+    padding: calc(var(--spacing) * 8);
+  }
+}
+.wc-block-components-checkout-step__title {
+  margin-bottom: calc(var(--spacing) * 6);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  line-height: var(--tw-leading, var(--text-xl--line-height));
+  --tw-font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold);
+}
+.wc-block-components-checkout-place-order-button {
+  width: 100%;
+  border-radius: var(--radius-xl);
+  background-color: #1e293b;
+  padding-block: calc(var(--spacing) * 5);
+  font-size: 13px;
+  --tw-font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold);
+  --tw-tracking: 0.2em;
+  letter-spacing: 0.2em;
+  color: var(--color-white);
+  text-transform: uppercase;
+  transition-property: all;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  --tw-duration: 300ms;
+  transition-duration: 300ms;
+  &:hover {
+    @media (hover: hover) {
+      background-color: #0f172a;
+    }
+  }
+}
+.wc-block-checkout {
+  margin-inline: auto;
+  width: 100%;
+  max-width: var(--container-7xl);
+  padding-inline: calc(var(--spacing) * 4);
 }
 div#page {
   width: 100%;
@@ -4581,11 +4614,6 @@ div#page {
   inherits: false;
   initial-value: 0 0 #0000;
 }
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
-}
 @property --tw-blur {
   syntax: "*";
   inherits: false;
@@ -4771,7 +4799,6 @@ div#page {
       --tw-ring-offset-width: 0px;
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
-      --tw-outline-style: solid;
       --tw-blur: initial;
       --tw-brightness: initial;
       --tw-contrast: initial;
