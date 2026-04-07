@@ -64,18 +64,6 @@
             <p class="text-sm text-muted-foreground text-center mt-12">Your cart is empty.</p>
         <?php endif; ?>
     </div>
-
-    <!-- Footer actions -->
-    <?php if ( class_exists( 'WooCommerce' ) ) : ?>
-    <div class="px-6 py-5 border-t border-border shrink-0 space-y-3">
-        <div class="flex justify-between text-sm font-medium mb-1">
-            <span class="text-muted-foreground uppercase tracking-wide text-xs">Subtotal</span>
-            <span><?php wc_cart_totals_subtotal_html(); ?></span>
-        </div>
-        <a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="block w-full text-center py-3 px-4 border border-border rounded-xl text-sm font-medium hover:bg-secondary transition-colors">View Cart</a>
-        <a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="block w-full text-center py-3 px-4 bg-primary text-primary-foreground rounded-xl text-sm font-medium hover:bg-primary/90 transition-colors">Checkout</a>
-    </div>
-    <?php endif; ?>
 </div>
 
 <!-- ===== HEADER ===== -->

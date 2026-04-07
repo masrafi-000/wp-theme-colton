@@ -123,9 +123,9 @@ $progress_data = colton_research_get_cart_progress_data();
                         $product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
                         ?>
                         <div class="flex gap-5 relative group">
-                            <!-- Remove Icon Top Left -->
-                            <a href="<?php echo esc_url( wc_get_cart_remove_url( $cart_item_key ) ); ?>" class="absolute -top-1 -left-1 w-5 h-5 bg-white border border-border rounded-full flex items-center justify-center text-muted-foreground hover:text-red-500 hover:border-red-200 transition-all z-20 shadow-sm" data-product_id="<?php echo esc_attr( $product_id ); ?>" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                            <!-- Remove Icon Top Right -->
+                            <a href="<?php echo esc_url( wc_get_cart_remove_url( $cart_item_key ) ); ?>" class="absolute -top-2 -right-2 w-6 h-6 bg-white border border-border rounded-full flex items-center justify-center text-muted-foreground hover:text-red-500 hover:border-red-200 transition-all z-20 shadow-sm" data-product_id="<?php echo esc_attr( $product_id ); ?>" data-cart_item_key="<?php echo esc_attr( $cart_item_key ); ?>">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                             </a>
 
                             <div class="flex-grow flex items-center justify-between gap-4">
@@ -155,15 +155,19 @@ $progress_data = colton_research_get_cart_progress_data();
         </div>
 
         <!-- Sticky Footer -->
-        <div class="p-6 border-t border-border bg-white shadow-[0_-10px_20px_rgba(0,0,0,0.02)]">
-            <div class="flex items-center justify-between mb-6">
-                <span class="text-sm font-bold text-foreground uppercase tracking-wider">Subtotal:</span>
+        <div class="p-6 border-t border-border bg-white shadow-[0_-10px_20px_rgba(0,0,0,0.02)] space-y-3">
+            <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold text-muted-foreground uppercase tracking-widest">Subtotal</span>
                 <span class="text-lg font-bold text-foreground"><?php echo WC()->cart->get_cart_subtotal(); ?></span>
             </div>
-            <a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="w-full bg-brand-blue hover:bg-brand-blue-dark text-white font-bold py-5 rounded-xl flex items-center justify-center gap-3 uppercase tracking-[0.2em] text-[13px] transition-all duration-300 shadow-lg shadow-brand-blue/20">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                CHECKOUT
-            </a>
+            <div class="grid grid-cols-2 gap-3">
+                <a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="w-full border border-border hover:bg-secondary text-foreground font-bold py-4 rounded-xl flex items-center justify-center uppercase tracking-widest text-[11px] transition-all duration-300">
+                    VIEW CART
+                </a>
+                <a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="w-full bg-brand-blue hover:bg-brand-blue-dark text-primary-foreground font-bold py-4 rounded-xl flex items-center justify-center uppercase tracking-widest text-[11px] transition-all duration-300 shadow-lg shadow-brand-blue/20">
+                    CHECKOUT
+                </a>
+            </div>
         </div>
     </div>
 
