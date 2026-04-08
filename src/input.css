@@ -633,10 +633,7 @@ button.single_add_to_cart_button.button.alt:hover,
 }
 
 .wc-block-components-order-summary-item__total-price {
-  @apply shrink-0 text-right font-bold;
-  width: auto;
-  min-width: 100px;
-  white-space: nowrap; /* Prevents price splitting like $45.0 0 */
+  display: none;
 }
 
 /* Fix 4: Styling blocks for high-end boutique feel */
