@@ -4525,6 +4525,26 @@
 .wc-block-components-order-summary-item__total-price {
   display: none;
 }
+.wc-block-components-checkout-return-to-cart-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  background-color: #02669e;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.wc-block-components-checkout-return-to-cart-button:hover {
+  background-color: #014d7a;
+}
 .wc-block-components-checkout-step {
   margin-bottom: calc(var(--spacing) * 8);
   border-radius: var(--radius-2xl);

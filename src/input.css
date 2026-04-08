@@ -636,6 +636,28 @@ button.single_add_to_cart_button.button.alt:hover,
   display: none;
 }
 
+.wc-block-components-checkout-return-to-cart-button{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  background-color: #02669e;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.wc-block-components-checkout-return-to-cart-button:hover {
+  background-color: #014d7a;
+}
+
 /* Fix 4: Styling blocks for high-end boutique feel */
 .wc-block-components-checkout-step {
   @apply bg-white border border-border rounded-2xl p-6 md:p-8 mb-8;
