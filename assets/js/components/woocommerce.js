@@ -17,7 +17,22 @@
                     if ($select.data('variation-buttons-initialized')) return;
                     $select.data('variation-buttons-initialized', true);
 
-                    var $container = $('<div class="variation-buttons-container flex flex-wrap gap-3 mt-2 mb-6"></div>');
+                    // Create Selected Label
+                    var attributeName = $select.closest('tr').find('.label label').text() || 'Option';
+                    var $selectedLabel = $('<span class="text-xs text-primary font-bold uppercase ml-auto">Selected: <span class="selected-value-text">' + ($select.val() || 'None') + '</span></span>');
+                    
+                    var $headerRow = $('<div class="flex items-center justify-between mb-4 mt-6"></div>');
+                    var $label = $select.closest('tr').find('.label label');
+                    
+                    if ($label.length) {
+                        $label.addClass('block text-sm font-bold text-foreground uppercase tracking-widest m-0').css('font-family', "'Space Grotesk', sans-serif");
+                        $label.detach().appendTo($headerRow);
+                    } else {
+                        $headerRow.append('<label class="block text-sm font-bold text-foreground uppercase tracking-widest m-0">Select ' + attributeName + '</label>');
+                    }
+                    $headerRow.append($selectedLabel);
+
+                    var $container = $('<div class="variation-buttons-container flex flex-wrap gap-3 mb-8"></div>');
 
                     $select.find('option').each(function() {
                         var $option = $(this);
@@ -33,6 +48,7 @@
                         // Mark as active if already selected
                         if ($select.val() === optionVal) {
                             $btn.addClass('active-swatch border-primary text-primary bg-primary/5');
+                            $selectedLabel.find('.selected-value-text').text($option.text());
                         }
 
                         $btn.on('click', function(e) {
@@ -45,13 +61,15 @@
                             $select.val(selectedVal);
 
                             // Trigger WooCommerce's internal variation update chain
-                            // This fires WC's own ajax check for the variation
                             $select[0].dispatchEvent(new Event('change', { bubbles: true }));
                             $select.trigger('change');
 
                             // Update swatch active state
                             $container.find('.variation-btn').removeClass('active-swatch border-primary text-primary bg-primary/5');
                             $(this).addClass('active-swatch border-primary text-primary bg-primary/5');
+                            
+                            // Update dynamic label
+                            $selectedLabel.find('.selected-value-text').text($(this).text());
                         });
 
                         $container.append($btn);
@@ -67,12 +85,11 @@
                         'opacity':  '0'
                     });
 
-                    var $label = $select.closest('tr').find('.label label');
-                    if ($label.length) {
-                        $label.addClass('block text-base font-bold text-foreground mb-3 uppercase tracking-widest').css('font-family', "'Space Grotesk', sans-serif");
-                    }
-
-                    $select.after($container);
+                    $select.after($headerRow, $container);
+                    
+                    // Hide the parent TR to clean up the table layout
+                    $select.closest('tr').css('display', 'block').find('.label').hide();
+                    $select.closest('tr').find('.value').css('display', 'block');
                 });
 
                 // Sync swatch active state when WooCommerce finds a variation

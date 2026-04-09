@@ -68,7 +68,7 @@ get_header();
                         Get 5% Off Your<br />First Order!
                     </h2>
                     <p class="text-white/80 text-lg">
-                        Join the Colton Research community to receive <span class="text-white font-bold">5% off</span> your first order.
+                        Join the Halo Peptideco community to receive <span class="text-white font-bold">5% off</span> your first order.
                     </p>
                 </div>
 

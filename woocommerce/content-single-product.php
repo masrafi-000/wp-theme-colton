@@ -43,7 +43,13 @@ if ( post_password_required() ) {
     <!-- Right Column: Summary -->
 	<div class="summary entry-summary space-y-8">
         <div class="space-y-4">
-            <p class="text-primary text-xs font-bold uppercase tracking-[0.3em]">≥99% Purity</p>
+            <?php 
+            $purity = $product->get_attribute('pa_purity') ?: $product->get_attribute('Purity');
+            if ( $purity ) : ?>
+                <p class="text-primary text-xs font-bold uppercase tracking-[0.3em]"><?php echo esc_html( $purity ); ?> Purity</p>
+            <?php else: ?>
+                <p class="text-primary text-xs font-bold uppercase tracking-[0.3em]">Research Grade</p>
+            <?php endif; ?>
             <h1 class="product_title text-4xl md:text-6xl font-display font-bold text-foreground"><?php the_title(); ?></h1>
             <div class="text-muted-foreground text-sm tracking-wider">
                 SKU: <span class="sku"><?php echo ( $sku = $product->get_sku() ) ? $sku : esc_html__( 'N/A', 'woocommerce' ); ?></span>
@@ -81,74 +87,54 @@ if ( post_password_required() ) {
             <p><span class="text-primary font-bold uppercase">Research Use Only</span> — This product is intended solely for laboratory and research purposes. Not for human consumption. By purchasing, you confirm this product will be used for in vitro research only.</p>
         </div>
 
-        <!-- Collapsible Details Dropdown -->
-        <div class="space-y-4 pt-8 border-t border-border">
-            <div class="product-accordion border border-border rounded-xl overflow-hidden bg-white shadow-sm">
-                <!-- Intended Use -->
-                <div class="accordion-item border-b border-border last:border-0">
-                    <button class="accordion-header w-full flex items-center justify-between p-5 text-left hover:bg-secondary/20 transition-all duration-300">
-                        <span class="text-sm font-bold uppercase tracking-widest text-foreground flex items-center gap-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M22 10v6M2 10v6M12 4v16M4 10h16"/></svg>
-                            Intended Use
-                        </span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accordion-icon transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>
-                    </button>
-                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
-                        <div class="p-6 text-sm text-muted-foreground leading-relaxed">
-                            This product is designed for Research Purposes only. All peptides require reconstitution with Bacteriostatic water (BAC water), sold separately.
-                        </div>
-                    </div>
-                </div>
+        <!-- Collapsible Details Dropdown (Dynamic) -->
+        <?php
+        $attributes = $product->get_attributes();
+        $has_accordions = false;
+        
+        // Filter out variation attributes and Purity (already handled)
+        $accordion_attributes = array_filter( $attributes, function($attr) {
+            return ! $attr->get_variation() && $attr->get_visible();
+        } );
 
-                <!-- Storage -->
-                <div class="accordion-item border-b border-border last:border-0">
-                    <button class="accordion-header w-full flex items-center justify-between p-5 text-left hover:bg-secondary/20 transition-all duration-300">
-                        <span class="text-sm font-bold uppercase tracking-widest text-foreground flex items-center gap-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M10 21v-8a2 2 0 0 0-4 0v8M14 21v-8a2 2 0 0 1 4 0v8M6 21h12"/></svg>
-                            Storage
-                        </span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accordion-icon transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>
-                    </button>
-                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
-                        <div class="p-6 text-sm text-muted-foreground leading-relaxed">
-                            Store the vial in a cool, dry place away from direct sunlight. Once reconstituted, keep refrigerated at 2-8°C.
+        if ( ! empty( $accordion_attributes ) ) : ?>
+            <div class="space-y-4 pt-8 border-t border-border">
+                <div class="product-accordion border border-border rounded-xl overflow-hidden bg-white shadow-sm">
+                    <?php 
+                    $index = 0;
+                    foreach ( $accordion_attributes as $attribute ) : 
+                        $name = wc_attribute_label( $attribute->get_name() );
+                        $values = $product->get_attribute( $attribute->get_name() );
+                        
+                        // Icon mapping based on attribute name
+                        $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M22 10v6M2 10v6M12 4v16M4 10h16"/></svg>';
+                        
+                        if ( stripos($name, 'storage') !== false ) {
+                            $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M10 21v-8a2 2 0 0 0-4 0v8M14 21v-8a2 2 0 0 1 4 0v8M6 21h12"/></svg>';
+                        } elseif ( stripos($name, 'shelf') !== false ) {
+                            $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>';
+                        } elseif ( stripos($name, 'solubility') !== false ) {
+                            $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>';
+                        }
+                    ?>
+                        <div class="accordion-item border-b border-border last:border-0">
+                            <button class="accordion-header w-full flex items-center justify-between p-5 text-left hover:bg-secondary/20 transition-all duration-300">
+                                <span class="text-sm font-bold uppercase tracking-widest text-foreground flex items-center gap-3">
+                                    <?php echo $icon; ?>
+                                    <?php echo esc_html( $name ); ?>
+                                </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accordion-icon transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>
+                            </button>
+                            <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                                <div class="p-6 text-sm text-muted-foreground leading-relaxed">
+                                    <?php echo wp_kses_post( $values ); ?>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Solubility -->
-                <div class="accordion-item border-b border-border last:border-0">
-                    <button class="accordion-header w-full flex items-center justify-between p-5 text-left hover:bg-secondary/20 transition-all duration-300">
-                        <span class="text-sm font-bold uppercase tracking-widest text-foreground flex items-center gap-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
-                            Solubility
-                        </span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accordion-icon transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>
-                    </button>
-                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
-                        <div class="p-6 text-sm text-muted-foreground leading-relaxed">
-                            Reconstitute with bacteriostatic water for best results. Vial Size: 3ml (can hold up to 3ml BAC water).
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Shelf Life -->
-                <div class="accordion-item border-b border-border last:border-0">
-                    <button class="accordion-header w-full flex items-center justify-between p-5 text-left hover:bg-secondary/20 transition-all duration-300">
-                        <span class="text-sm font-bold uppercase tracking-widest text-foreground flex items-center gap-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                            Shelf Life
-                        </span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accordion-icon transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>
-                    </button>
-                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
-                        <div class="p-6 text-sm text-muted-foreground leading-relaxed">
-                            The lyophilized form has a shelf life of 24 months when properly stored. Once reconstituted, refrigerate and use within 4-6 weeks.
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
-        </div>
+        <?php endif; ?>
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {

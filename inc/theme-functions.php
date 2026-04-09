@@ -103,7 +103,7 @@ function colton_research_account_discount_message() {
         ?>
         <div class="bg-primary/10 border border-primary/20 rounded-xl p-6 mb-8 flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="space-y-1">
-                <h3 class="text-lg font-bold text-primary">Join the Research Community</h3>
+                <h3 class="text-lg font-bold text-primary">Join the Halo Peptideco Community</h3>
                 <p class="text-sm text-muted-foreground">Get a 10% discount on your first order.</p>
             </div>
             <a href="<?php echo esc_url( wp_registration_url() ); ?>" class="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-accent transition-colors">Create Account</a>

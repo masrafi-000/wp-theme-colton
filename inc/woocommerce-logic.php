@@ -115,106 +115,6 @@ function colton_research_back_in_stock_form() {
 }
 add_action( 'woocommerce_single_product_summary', 'colton_research_back_in_stock_form', 31 );
 
-/**
- * Custom Size Selection Logic
- * IMPORTANT: Uses woocommerce_before_add_to_cart_button so the HTML is
- * rendered INSIDE the form.cart — this ensures selected_product_size is
- * included in the POST data when the form is submitted.
- */
-function colton_research_add_size_selection() {
-    global $product;
-
-    // Only show on simple products (not variable products which have their own selects)
-    if ( $product->get_type() !== 'simple' ) return;
-
-    $sizes = array(
-        '5mg'  => array( 'label' => '5mg',  'price_mod' => 0.6 ),
-        '10mg' => array( 'label' => '10mg', 'price_mod' => 1.0 ),
-        '15mg' => array( 'label' => '15mg', 'price_mod' => 1.4 ),
-        '20mg' => array( 'label' => '20mg', 'price_mod' => 1.8 ),
-        '25mg' => array( 'label' => '25mg', 'price_mod' => 2.2 ),
-        '30mg' => array( 'label' => '30mg', 'price_mod' => 2.6 ),
-    );
-    $base_price = (float) $product->get_price();
-    $default_size = '10mg';
-    ?>
-    <div class="product-size-selection space-y-4 mb-6">
-        <div class="flex items-center justify-between">
-            <label class="block text-sm font-bold uppercase tracking-widest text-foreground">Select Size</label>
-            <span id="size-selected-label" class="text-xs text-primary font-bold uppercase">Selected: <span id="size-selected-text"><?php echo esc_html( $default_size ); ?></span></span>
-        </div>
-        <div class="flex flex-wrap gap-3" id="size-swatches">
-            <?php foreach ( $sizes as $key => $size ) :
-                $display_price = $base_price * $size['price_mod'];
-            ?>
-                <button type="button"
-                        class="size-swatch-btn <?php echo $key === $default_size ? 'active-swatch' : ''; ?>"
-                        data-size="<?php echo esc_attr( $key ); ?>"
-                        data-price="<?php echo esc_attr( $display_price ); ?>"
-                        data-formatted-price="<?php echo esc_attr( wc_price( $display_price ) ); ?>">
-                    <?php echo esc_html( $size['label'] ); ?>
-                </button>
-            <?php endforeach; ?>
-        </div>
-        <!-- This input is INSIDE form.cart so it submits with the form -->
-        <input type="hidden" name="selected_product_size" id="selected-product-size" value="<?php echo esc_attr( $default_size ); ?>">
-    </div>
-    <?php
-}
-// woocommerce_before_add_to_cart_button fires INSIDE <form class="cart">
-add_action( 'woocommerce_before_add_to_cart_button', 'colton_research_add_size_selection', 10 );
-
-function colton_research_add_cart_item_data( $cart_item_data, $product_id, $variation_id ) {
-    if ( isset( $_POST['selected_product_size'] ) ) {
-        $cart_item_data['selected_size'] = sanitize_text_field( $_POST['selected_product_size'] );
-    }
-    return $cart_item_data;
-}
-add_filter( 'woocommerce_add_cart_item_data', 'colton_research_add_cart_item_data', 10, 3 );
-
-function colton_research_get_item_data( $item_data, $cart_item ) {
-    if ( isset( $cart_item['selected_size'] ) ) {
-        $item_data[] = array(
-            'key'   => __( 'Size', 'woocommerce' ),
-            'value' => wc_clean( $cart_item['selected_size'] ),
-        );
-    }
-    return $item_data;
-}
-add_filter( 'woocommerce_get_item_data', 'colton_research_get_item_data', 10, 2 );
-
-function colton_research_before_calculate_totals( $cart ) {
-    if ( is_admin() && ! defined( 'DOING_AJAX' ) ) return;
-    // Price multipliers keyed to the new size values
-    $price_mods = array(
-        '5mg'  => 0.6,
-        '10mg' => 1.0,
-        '15mg' => 1.4,
-    );
-    foreach ( $cart->get_cart() as $cart_item ) {
-        if ( isset( $cart_item['selected_size'] ) && isset( $price_mods[ $cart_item['selected_size'] ] ) ) {
-            $base_price = (float) $cart_item['data']->get_price();
-            $mod = $price_mods[ $cart_item['selected_size'] ];
-            $cart_item['data']->set_price( $base_price * $mod );
-        }
-    }
-}
-add_action( 'woocommerce_before_calculate_totals', 'colton_research_before_calculate_totals', 10, 1 );
-
-/**
- * Save selected size to order line item meta (database persistence)
- * This ensures the size appears in admin order view and confirmation emails.
- */
-function colton_research_save_size_to_order_item( $item, $cart_item_key, $cart_item, $order ) {
-    if ( isset( $cart_item['selected_size'] ) ) {
-        $item->add_meta_data(
-            __( 'Size', 'woocommerce' ),
-            wc_clean( $cart_item['selected_size'] ),
-            true
-        );
-    }
-}
-add_action( 'woocommerce_checkout_create_order_line_item', 'colton_research_save_size_to_order_item', 10, 4 );
 
 /**
  * Product Archive Excerpt
@@ -233,34 +133,58 @@ add_action( 'woocommerce_after_shop_loop_item_title', 'colton_research_show_exce
  * Scientific Details
  */
 function colton_research_product_scientific_details() {
+    global $product;
+    
+    // Define the specific attributes we want in the Technical Specs box
+    $spec_map = array(
+        'Purity Level' => array('pa_purity', 'Purity'),
+        'Formulation'  => array('pa_formulation', 'Formulation'),
+        'Storage'      => array('pa_storage', 'Storage'),
+    );
+    
+    $specs = array();
+    foreach ( $spec_map as $label => $slugs ) {
+        foreach ( (array)$slugs as $slug ) {
+            $val = $product->get_attribute($slug);
+            if ( $val ) {
+                $specs[$label] = $val;
+                break;
+            }
+        }
+    }
+
+    // Get certifications attribute (as a comma-separated list or multiple terms)
+    $certs_raw = $product->get_attribute('pa_certifications') ?: $product->get_attribute('Certifications');
+    $certs = $certs_raw ? array_map('trim', explode(',', $certs_raw)) : array();
+
+    if ( empty($specs) && empty($certs) ) return;
     ?>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 border-t border-border pt-8">
-        <div class="space-y-4">
-            <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Technical Specs</h4>
-            <div class="space-y-2">
-                <div class="flex justify-between text-xs py-2 border-b border-border/50">
-                    <span class="text-muted-foreground">Purity Level</span>
-                    <span class="text-foreground font-medium">≥98% HPLC Verified</span>
-                </div>
-                <div class="flex justify-between text-xs py-2 border-b border-border/50">
-                    <span class="text-muted-foreground">Formulation</span>
-                    <span class="text-foreground font-medium">Lyophilized Powder</span>
-                </div>
-                <div class="flex justify-between text-xs py-2 border-b border-border/50">
-                    <span class="text-muted-foreground">Storage</span>
-                    <span class="text-foreground font-medium">-20°C Recommended</span>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 border-t border-border pt-8">
+        <?php if ( ! empty($specs) ) : ?>
+            <div class="space-y-4">
+                <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Technical Specs</h4>
+                <div class="space-y-2">
+                    <?php foreach ( $specs as $label => $val ) : ?>
+                        <div class="flex justify-between text-xs py-2 border-b border-border/50">
+                            <span class="text-muted-foreground"><?php echo esc_html($label); ?></span>
+                            <span class="text-foreground font-medium"><?php echo esc_html($val); ?></span>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
-        </div>
-        <div class="space-y-4">
-            <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Certifications</h4>
-            <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 bg-secondary/50 rounded-full text-[10px] font-bold text-foreground border border-border uppercase">HPLC Tested</span>
-                <span class="px-3 py-1 bg-secondary/50 rounded-full text-[10px] font-bold text-foreground border border-border uppercase">MS Verified</span>
-                <span class="px-3 py-1 bg-secondary/50 rounded-full text-[10px] font-bold text-foreground border border-border uppercase">cGMP Mfg</span>
+        <?php endif; ?>
+
+        <?php if ( ! empty($certs) ) : ?>
+            <div class="space-y-4">
+                <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Certifications</h4>
+                <div class="flex flex-wrap gap-2">
+                    <?php foreach ( $certs as $cert ) : ?>
+                        <span class="px-3 py-1 bg-secondary/50 rounded-full text-[10px] font-bold text-foreground border border-border uppercase"><?php echo esc_html($cert); ?></span>
+                    <?php endforeach; ?>
+                </div>
+                <p class="text-[10px] text-muted-foreground leading-relaxed italic">Batch-specific COA included with every shipment.</p>
             </div>
-            <p class="text-[10px] text-muted-foreground leading-relaxed italic">Batch-specific COA included with every shipment.</p>
-        </div>
+        <?php endif; ?>
     </div>
     <?php
 }
@@ -286,7 +210,7 @@ function colton_research_terms_and_conditions_field() {
             'class'         => array('form-row', 'terms', 'wc-terms-and-conditions'),
             'label'         => sprintf( __( 'I have read and agree to the website <a href="%s" target="_blank">terms and conditions</a>', 'woocommerce' ), esc_url( get_permalink( $terms_page_id ) ) ),
             'required'      => true,
-        ), 组件()->checkout->get_value( 'terms' ) ); // Note: WC()->checkout error fix in original code? using WC() directly
+        ), WC()->checkout->get_value( 'terms' ) ); // Note: WC()->checkout error fix in original code? using WC() directly
     }
 }
 // Fix typo from original code copy: 组件 -> WC()

@@ -541,6 +541,9 @@
   .ml-2 {
     margin-left: calc(var(--spacing) * 2);
   }
+  .ml-auto {
+    margin-left: auto;
+  }
   .line-clamp-2 {
     overflow: hidden;
     display: -webkit-box;
@@ -2221,6 +2224,10 @@
   .ease-in-out {
     --tw-ease: var(--ease-in-out);
     transition-timing-function: var(--ease-in-out);
+  }
+  .outline-none {
+    --tw-outline-style: none;
+    outline-style: none;
   }
   .\[text-shadow\:0_2px_8px_rgba\(0\,0\,0\,0\.4\)\] {
     text-shadow: 0 2px 8px rgba(0,0,0,0.4);
@@ -4292,8 +4299,8 @@
 }
 .variation-btn {
   min-width: 80px;
-  padding: 0.625rem 1.25rem;
-  border-radius: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.875rem;
   border: 2px solid #e2e8f0;
   background-color: #ffffff;
   color: #0f172a;
@@ -4301,43 +4308,26 @@
   font-size: 0.875rem;
   letter-spacing: 0.025em;
   cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 .variation-btn:hover {
   border-color: #02669e;
   color: #02669e;
-  box-shadow: 0 0 0 3px rgba(2, 102, 158, 0.1);
+  box-shadow: 0 4px 12px rgba(2, 102, 158, 0.1);
+  transform: translateY(-1px);
 }
 .variation-btn.active-swatch {
   border-color: #02669e;
-  background-color: rgba(2, 102, 158, 0.06);
-  color: #02669e;
-  box-shadow: 0 0 0 3px rgba(2, 102, 158, 0.15);
-}
-.size-swatch-btn {
-  min-width: 72px;
-  padding: 0.625rem 1.25rem;
-  border-radius: 0.75rem;
-  border: 2px solid #e2e8f0;
-  background-color: #ffffff;
-  color: #0f172a;
-  font-weight: 700;
-  font-size: 0.875rem;
-  letter-spacing: 0.025em;
-  cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
-}
-.size-swatch-btn:hover {
-  border-color: #02669e;
-  color: #02669e;
-  box-shadow: 0 0 0 3px rgba(2, 102, 158, 0.1);
-}
-.size-swatch-btn.active-swatch {
-  border-color: #02669e;
   background-color: rgba(2, 102, 158, 0.08);
   color: #02669e;
-  box-shadow: 0 0 0 3px rgba(2, 102, 158, 0.18);
+  box-shadow: 0 0 0 4px rgba(2, 102, 158, 0.15);
   font-weight: 800;
+}
+.variation-buttons-container {
+  margin-top: calc(var(--spacing) * 2);
 }
 .toast-notification {
   pointer-events: auto;

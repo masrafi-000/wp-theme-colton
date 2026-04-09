@@ -161,18 +161,23 @@ do_action( 'woocommerce_before_cart' ); ?>
                             echo '<span class="w-9 text-center text-sm font-semibold text-foreground">1</span>';
                             echo '<input type="hidden" name="cart[' . esc_attr( $cart_item_key ) . '][qty]" value="1">';
                         } else {
-                            woocommerce_quantity_input(
-                                array(
-                                    'input_name'   => "cart[{$cart_item_key}][qty]",
-                                    'input_value'  => $cart_item['quantity'],
-                                    'max_value'    => $_product->get_max_purchase_quantity(),
-                                    'min_value'    => '0',
-                                    'product_name' => $product_name,
-                                    'classes'      => array( 'qty' ),
-                                ),
-                                $_product,
-                                true
-                            );
+                            if ( function_exists( 'woocommerce_quantity_input' ) ) {
+                                woocommerce_quantity_input(
+                                    array(
+                                        'input_name'   => "cart[{$cart_item_key}][qty]",
+                                        'input_value'  => $cart_item['quantity'],
+                                        'max_value'    => $_product->get_max_purchase_quantity(),
+                                        'min_value'    => '0',
+                                        'product_name' => $product_name,
+                                        'classes'      => array( 'qty' ),
+                                    ),
+                                    $_product,
+                                    true
+                                );
+                            } else {
+                                // Fallback to standard input if function is missing for some reason
+                                echo '<input type="number" name="cart[' . esc_attr( $cart_item_key ) . '][qty]" value="' . esc_attr( $cart_item['quantity'] ) . '" class="qty w-9 text-center bg-transparent border-none outline-none">';
+                            }
                         }
                         ?>
                         <button type="button" class="qty-plus w-9 h-9 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors text-lg font-bold" aria-label="Increase quantity">+</button>
