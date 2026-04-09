@@ -138,7 +138,7 @@ get_header();
 <section class="py-12 sm:py-20 bg-white border-b border-[#f1f5f9] mt-0 reveal-on-scroll">
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 max-w-[1400px] mx-auto px-6 sm:px-[6%]">
         <div class="trust-item group transition-all duration-300 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4">
-            <div class="trust-icon-box bg-secondary p-4 sm:p-5 rounded-2xl group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+            <div class="trust-icon-box bg-secondary p-4 sm:p-5 rounded-2xl group-hover:scale-105 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 sm:w-6 sm:h-6"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
             </div>
             <div class="trust-content">
@@ -148,7 +148,7 @@ get_header();
         </div>
 
         <div class="trust-item group transition-all duration-300 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4">
-            <div class="trust-icon-box bg-secondary p-4 sm:p-5 rounded-2xl group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+            <div class="trust-icon-box bg-secondary p-4 sm:p-5 rounded-2xl group-hover:scale-105 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 sm:w-6 sm:h-6"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
             </div>
             <div class="trust-content">
@@ -158,7 +158,7 @@ get_header();
         </div>
 
         <div class="trust-item group transition-all duration-300 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4">
-            <div class="trust-icon-box bg-secondary p-4 sm:p-5 rounded-2xl group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+            <div class="trust-icon-box bg-secondary p-4 sm:p-5 rounded-2xl group-hover:scale-105 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 sm:w-6 sm:h-6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
             </div>
             <div class="trust-content">
@@ -168,7 +168,7 @@ get_header();
         </div>
 
         <div class="trust-item group transition-all duration-300 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4">
-            <div class="trust-icon-box bg-secondary p-4 sm:p-5 rounded-2xl group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+            <div class="trust-icon-box bg-secondary p-4 sm:p-5 rounded-2xl group-hover:scale-105 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 sm:w-6 sm:h-6"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
             </div>
             <div class="trust-content">
@@ -259,13 +259,13 @@ get_header();
                         </div>
                     </div>
 
-                    <div class="bg-white rounded-[60px] p-4 shadow-[0_40px_100px_rgba(0,0,0,0.08)] transition-transform duration-700 hover:scale-105">
+                    <div class="bg-white rounded-xl p-4 transition-transform ">
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/images/BPC-157.png" alt="Research Grade Peptides" class="w-full h-auto max-w-[320px] sm:max-w-md lg:max-w-full mx-auto" />
                     </div>
                 </div>
                 
                 <!-- Background Glow -->
-                <div class="absolute inset-0 bg-[#38bdf8]/5 blur-[120px] rounded-full scale-150 -z-20"></div>
+                <div class="absolute inset-0 bg-[#38bdf8]/5 blur-[120px] rounded-full scale-105 -z-20"></div>
             </div>
 
         </div>
@@ -390,21 +390,59 @@ get_header();
     </div>
 </section>
 
-<!-- Simple Powerful Effective Section -->
-<section class="bg-[#020617] text-white overflow-hidden">
-    <div class="grid grid-cols-1 lg:grid-cols-2 items-center">
-        <div class="relative h-[400px] sm:h-[500px] lg:h-[800px] flex items-center justify-center bg-radial-gradient">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/BPC-157.png" alt="Research Peptides" class="w-full h-auto max-w-[280px] sm:max-w-xs md:max-w-md lg:max-w-lg drop-shadow-[0_0_50px_rgba(2,102,158,0.5)] transition-transform duration-700 hover:scale-110" />
+<!-- Simple Powerful Effective Redesign -->
+<section class="bg-[#020617] text-white overflow-hidden relative border-y border-white/5">
+    <!-- Scientific Foundation Layer -->
+    <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 scientific-grid opacity-[0.05]"></div>
+        <div class="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-[#38bdf8]/10 blur-[150px] rounded-full -translate-y-1/2 -z-10"></div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 items-center relative z-10 w-full">
+        <!-- Visual Column -->
+        <div class="relative h-[450px] sm:h-[600px] lg:h-[900px] flex items-center justify-center overflow-hidden border-b lg:border-b-0 lg:border-r border-white/5 order-last lg:order-first">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(56,189,248,0.08)_0%,transparent_70%)]"></div>
+            
+            <div class="relative z-20 group">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/BPC-157.png" alt="Pure Research Peptides" class="w-full h-auto max-w-[280px] sm:max-w-md xl:max-w-xl transition-transform duration-1000 group-hover:scale-110 drop-shadow-[0_0_120px_rgba(56,189,248,0.3)]" />
+                
+                <!-- Technical Profile Overlay (Scientific Tone) -->
+                <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 glass-card-premium px-6 py-4 rounded-3xl border border-white/10 backdrop-blur-xl shadow-2xl min-w-[240px] text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div class="space-y-1">
+                        <p class="text-[10px] font-bold text-[#6dd3ff] uppercase tracking-[0.3em]">Identity Verified</p>
+                        <p class="text-sm font-display font-bold text-[#fdfdfd]">BPC-157 (ARG-BPC)</p>
+                        <p class="text-[9px] text-secondary uppercase tracking-widest mt-2">Laboratory Grade Archive</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="p-8 sm:p-16 lg:p-24 space-y-8 sm:space-y-12 text-center lg:text-left bg-[#020617]/50 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none">
-            <h2 class="text-4xl sm:text-6xl lg:text-8xl font-display font-extrabold leading-[1.1]">Simple.<br class="hidden sm:block" />Powerful.<br class="hidden sm:block" />Effective.</h2>
-            <p class="text-base sm:text-xl text-white/50 max-w-md mx-auto lg:mx-0">Discover an intuitive way to elevate your research with Halo Peptideco.</p>
+
+        <!-- Narrative Column -->
+        <div class="p-8 sm:p-16 lg:p-24 xl:p-32 space-y-10 sm:space-y-16 text-center lg:text-left">
+            <div class="space-y-6 sm:space-y-10">
+                <div class="inline-flex items-center gap-3 px-4 py-2 bg-white/5 border border-white/10 rounded-full">
+                    <span class="w-2 h-2 rounded-full bg-[#38bdf8] animate-pulse"></span>
+                    <span class="text-white/60 text-[10px] sm:text-xs font-bold uppercase tracking-[0.4em]">Optimized Workflow</span>
+                </div>
+
+                <h2 class="text-[clamp(44px,11vw,130px)] font-display font-black leading-[0.95] text-white tracking-tighter mix-blend-plus-lighter">
+                    Simple<span class="text-[#38bdf8]">.</span><br />
+                    Powerful<span class="text-[#38bdf8]">.</span><br />
+                    Effective<span class="text-[#38bdf8]">.</span>
+                </h2>
+
+                <p class="text-base sm:text-xl lg:text-2xl text-white/40 max-w-lg mx-auto lg:mx-0 font-medium leading-relaxed">
+                    Discover an intuitive way to engage with high-performance research materials. Streamlined sourcing for modern scientific discovery.
+                </p>
+            </div>
+
             <div class="flex justify-center lg:justify-start">
-                <a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="px-8 sm:px-12 py-3.5 sm:py-5 rounded-full font-extrabold uppercase transition-all duration-300 inline-flex items-center gap-4 text-[13px] sm:text-[15px] tracking-widest bg-primary text-white shadow-xl hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-primary/30 w-full sm:w-auto justify-center">
-                    Explore Store
-                    <span class="bg-white text-primary w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:rotate-45">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-                    </span>
+                <a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="relative group block w-full sm:w-auto">
+                    <div class="absolute -inset-1 bg-[#38bdf8] rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                    <div class="relative px-10 sm:px-14 py-5 sm:py-6 bg-white text-[#020617] rounded-full font-black uppercase transition-all duration-300 flex items-center gap-4 text-[14px] sm:text-[16px] tracking-widest shadow-2xl group-hover:scale-105 group-hover:bg-[#38bdf8] group-hover:text-white justify-center">
+                        Explore Facility
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-2 transition-transform duration-500"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
                 </a>
             </div>
         </div>
