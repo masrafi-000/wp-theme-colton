@@ -10,144 +10,129 @@ get_header();
 
 
 
-<!-- Hero -->
-<section class="relative lg:h-[calc(100vh-97px)] max-lg:h-[calc(100dvh-65px)] flex items-center overflow-hidden bg-[radial-gradient(circle_at_0%_0%,#0ea5e9_0%,#0b1120_55%,#020617_100%)] text-white w-full max-w-full m-0 p-0 [.admin-bar_&]:lg:h-[calc(100vh-97px-32px)] [.admin-bar_&]:max-[782px]:h-[calc(100dvh-65px-46px)]">
-    <!-- Age Verification Modal -->
-    <div id="age-verification-modal" class="fixed inset-0 z-[1100] hidden items-center justify-center p-4 bg-background/95 backdrop-blur-lg animate-fade-in">
-        <div class="relative bg-white w-full max-w-lg rounded-[40px] p-12 text-center shadow-2xl border border-border overflow-hidden">
-            <div class="relative space-y-10">
-                <div class="flex justify-center">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/main logo  - Edited.png" alt="Logo" class="h-16 w-auto">
-                </div>
+<section class="relative min-h-[calc(100vh-65px)] lg:min-h-[calc(100vh-96px)] flex items-center overflow-hidden bg-[#020617] text-white w-full max-w-full m-0 p-0 [.admin-bar_&]:lg:min-h-[calc(100vh-96px-32px)]">
+    <!-- Sophisticated Background Layers -->
+    <div class="absolute inset-0 z-0">
+        <!-- Base Gradient -->
+        <div class="absolute inset-0 bg-[#020617] opacity-80"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(14,165,233,0.15)_0%,rgba(11,17,32,0)_100%)] opacity-100"></div>
+        <!-- Scientific Grid Overlay -->
+        <div class="absolute inset-0 scientific-grid opacity-20 [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]"></div>
+        <!-- Decorative Glows -->
+        <div class="absolute top-1/4 -right-1/4 w-[600px] h-[600px] blob-glow opacity-30 animate-pulse"></div>
+        <div class="absolute -bottom-1/4 -left-1/4 w-[400px] h-[400px] blob-glow opacity-20"></div>
+    </div>
 
-                <div class="space-y-4">
-                    <h2 class="text-3xl font-display font-extrabold text-foreground uppercase tracking-tight">
-                        Age Verification
-                    </h2>
-                    <p class="text-muted-foreground text-lg">
-                        You must be at least 21 years of age to enter this research facility.
+    <div class="relative z-10 w-full max-w-[1400px] xl:max-w-[1600px] 2xl:max-w-[1720px] mx-auto px-6 sm:px-10 py-12 lg:py-24 2xl:py-32">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 2xl:gap-32 items-center">
+            <!-- Left Content: Brand Narrative & Trust -->
+            <div class="space-y-10 lg:space-y-12 xl:space-y-16 text-center lg:text-left animate-slide-up relative">
+                <!-- Text Backdrop for high-contrast on mobile -->
+                <div class="absolute -inset-8 bg-slate-950/20 blur-3xl lg:hidden -z-10"></div>
+                
+                <div class="space-y-6 lg:space-y-8">
+                    <div class="inline-flex items-center gap-3 px-4 py-2 bg-[#38bdf8]/10 border border-[#38bdf8]/20 rounded-full backdrop-blur-sm shadow-inner">
+                        <span class="w-2 h-2 rounded-full bg-[#38bdf8] animate-pulse"></span>
+                        <span class="text-[#38bdf8] text-[10px] sm:text-xs font-bold uppercase tracking-[0.3em]"><?php echo esc_html( get_theme_mod( 'hero_subtitle', 'Certified Laboratory' ) ); ?></span>
+                    </div>
+
+                    <h1 class="text-[clamp(36px,6vw,84px)] xl:text-[clamp(48px,5.5vw,96px)] font-display font-extrabold leading-[1.05] sm:leading-[1.1] text-white tracking-tight [text-shadow:0_10px_40px_rgba(0,0,0,0.8)]">
+                        The Standard for <br />
+                        <span class="text-[#38bdf8] [text-shadow:0_0_40px_rgba(56,189,248,0.4)]">Scientific Integrity</span>
+                    </h1>
+
+                    <p class="text-white/90 text-sm sm:text-lg md:text-xl leading-relaxed max-w-xl mx-auto lg:mx-0 font-medium [text-shadow:0_4px_12px_rgba(0,0,0,0.6)]">
+                        Empowering precision research with batch-verified, research-grade peptides. Synthesized in cGMP facilities for undisputed laboratory results.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-2 gap-6">
-                    <button onclick="verifyAge(true)" class="group relative bg-primary hover:bg-brand-blue-dark transition-all duration-500 rounded-2xl py-5 px-8 border border-primary overflow-hidden shadow-xl shadow-primary/20">
-                        <span class="relative z-10 block font-display font-bold text-xl text-white">I AM 21+</span>
-                    </button>
-                    
-                    <button onclick="verifyAge(false)" class="group relative bg-secondary hover:bg-secondary-foreground/10 transition-all duration-500 rounded-2xl py-5 px-8 border border-border overflow-hidden">
-                        <span class="relative z-10 block font-display font-bold text-xl text-foreground">EXIT</span>
-                    </button>
+                <!-- Trust Bar: Scientific Pillars -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 xl:gap-6">
+                    <div class="glass-card-premium p-4 xl:p-6 rounded-2xl md:rounded-3xl space-y-3 border-l-2 border-l-[#38bdf8]/50 shadow-xl">
+                        <div class="text-[#38bdf8]">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        </div>
+                        <h4 class="text-[11px] xl:text-[12px] font-bold uppercase tracking-widest text-white/95">cGMP Verified</h4>
+                        <p class="text-[10px] xl:text-[11px] text-white/60 leading-tight">Pharma-Grade Synthesis</p>
+                    </div>
+                    <div class="glass-card-premium p-4 xl:p-6 rounded-2xl md:rounded-3xl space-y-3 border-l-2 border-l-[#38bdf8]/50 shadow-xl">
+                        <div class="text-[#38bdf8]">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                        </div>
+                        <h4 class="text-[11px] xl:text-[12px] font-bold uppercase tracking-widest text-white/95">&ge;99% Purity</h4>
+                        <p class="text-[10px] xl:text-[11px] text-white/60 leading-tight">HPLC Lab-Verified</p>
+                    </div>
+                    <div class="glass-card-premium p-4 xl:p-6 rounded-2xl md:rounded-3xl space-y-3 border-l-2 border-l-[#38bdf8]/50 shadow-xl">
+                        <div class="text-[#38bdf8]">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        </div>
+                        <h4 class="text-[11px] xl:text-[12px] font-bold uppercase tracking-widest text-white/95">Cold Chain</h4>
+                        <p class="text-[10px] xl:text-[11px] text-white/60 leading-tight">Temperature Monitored</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 xl:gap-6 justify-center lg:justify-start pt-4">
+                    <a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="px-10 py-5 bg-[#38bdf8] text-slate-950 font-extrabold uppercase tracking-[0.2em] rounded-full hover:bg-white transition-all duration-300 shadow-xl shadow-[#38bdf8]/20 hover:-translate-y-1 flex items-center justify-center gap-3 group text-[13px] sm:text-[15px]">
+                        Enter Facility
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                    <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="px-10 py-5 bg-white/5 border border-white/20 text-white font-bold uppercase tracking-[0.2em] rounded-full hover:bg-white/10 transition-all duration-300 flex items-center justify-center text-[13px] sm:text-[15px]">
+                        Request CoA
+                    </a>
+                </div>
+
+                <!-- Subtle Social Proof -->
+                <div class="flex items-center justify-center lg:justify-start gap-4 pt-4 lg:pt-8 opacity-90 xl:opacity-100">
+                    <div class="flex -space-x-3">
+                        <div class="w-10 h-10 xl:w-12 xl:h-12 rounded-full border-2 border-slate-900 bg-slate-800 flex items-center justify-center text-[11px] font-bold">MK</div>
+                        <div class="w-10 h-10 xl:w-12 xl:h-12 rounded-full border-2 border-slate-900 bg-slate-700 flex items-center justify-center text-[11px] font-bold">JD</div>
+                        <div class="w-10 h-10 xl:w-12 xl:h-12 rounded-full border-2 border-slate-900 bg-slate-600 flex items-center justify-center text-[11px] font-bold">RL</div>
+                    </div>
+                    <div class="text-left">
+                        <div class="flex text-yellow-400 scale-75 xl:scale-90 -ml-4 xl:-ml-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        </div>
+                        <p class="text-[11px] xl:text-[12px] text-white/50 italic leading-none mt-1">Foundational data for 2,400+ researchers</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Content: Premium Product Showcase -->
+            <div class="relative flex items-center justify-center animate-fade-in order-first lg:order-last">
+                <div class="relative z-20 group">
+                    <!-- Annotation 1 -->
+                    <div class="absolute -top-6 -left-16 lg:-left-24 scientific-annotation animate-float delay-75 hidden md:block">
+                        <div class="glass-card-premium px-4 py-2 rounded-xl scale-90 xl:scale-110 shadow-2xl">
+                            <span class="text-[10px] font-bold text-white/90 uppercase tracking-[0.2em] whitespace-nowrap">FORMULA: CAS 137525-51-0</span>
+                        </div>
+                    </div>
+                    <!-- Annotation 2 -->
+                    <div class="absolute top-1/2 -right-20 lg:-right-32 scientific-annotation animate-float delay-300 hidden md:block">
+                        <div class="glass-card-premium px-4 py-2 rounded-xl scale-90 xl:scale-110 shadow-2xl">
+                            <span class="text-[10px] font-bold text-white/90 uppercase tracking-[0.2em] whitespace-nowrap">ASSAY: &ge;99.4% PURITY</span>
+                        </div>
+                    </div>
+                    <!-- Annotation 3 -->
+                    <div class="absolute -bottom-10 -left-12 lg:-left-20 scientific-annotation animate-float delay-500 hidden md:block">
+                        <div class="glass-card-premium px-4 py-2 rounded-xl scale-90 xl:scale-110 shadow-2xl">
+                            <span class="text-[10px] font-bold text-white/90 uppercase tracking-[0.2em] whitespace-nowrap">HPLC VERIFIED BATCH</span>
+                        </div>
+                    </div>
+
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/BPC-157.png" alt="BPC-157 Research Peptide" class="w-full h-auto max-w-[280px] sm:max-w-[400px] lg:max-w-md xl:max-w-xl 2xl:max-w-2xl transition-transform duration-700 hover:scale-105 drop-shadow-[0_0_100px_rgba(56,189,248,0.2)]" />
                 </div>
                 
-                <p class="text-[10px] uppercase tracking-widest text-muted-foreground/60 italic">
-                    [All research must be conducted by qualified individuals. By entering, you agree to our Terms of Service.]
-                </p>
+                <!-- Center Glow Pulse -->
+                <div class="absolute inset-0 bg-[#38bdf8]/10 blur-[130px] rounded-full scale-110 xl:scale-150 -z-10 animate-pulse"></div>
             </div>
         </div>
     </div>
-
-    <!-- First Visit Popup -->
-    <div id="first-visit-popup" class="fixed inset-0 z-[1000] hidden items-center justify-center p-4 bg-background/80 backdrop-blur-md animate-fade-in">
-        <div class="relative bg-primary w-full max-w-lg rounded-[40px] p-12 text-center text-white shadow-2xl overflow-hidden group">
-            <!-- Close Button -->
-            <button id="close-popup" class="absolute top-6 right-6 text-white/60 hover:text-white transition-colors z-10">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            </button>
-
-            <!-- Decorative Background -->
-            <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none"></div>
-            <div class="absolute -top-24 -right-24 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
-
-            <div class="relative space-y-8">
-                <div class="flex justify-center">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/main logo  - Edited.png" alt="Logo" class="h-16 w-auto">
-                </div>
-
-                <div class="space-y-4">
-                    <h2 class="text-4xl font-display font-extrabold leading-tight uppercase tracking-tight">
-                        Get 5% Off Your<br />First Order!
-                    </h2>
-                    <p class="text-white/80 text-lg">
-                        Join the Halo Peptideco community to receive <span class="text-white font-bold">5% off</span> your first order.
-                    </p>
-                </div>
-
-                <!-- NOTE:  -->
-                <form id="popup-newsletter-form" class="space-y-4">
-                    <input 
-                        type="email" 
-                        placeholder="Enter Email Address Here" 
-                        class="w-full bg-white/10 border border-white/20 rounded-2xl py-5 px-6 text-white placeholder:text-white/50 focus:outline-none focus:bg-white/20 focus:border-white/40 transition-all text-center"
-                        required
-                    />
-                    <button type="submit" class="w-full bg-white text-primary font-bold py-5 rounded-2xl uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl">
-                        Sign Up & Get 5% Off
-                    </button>
-                </form>
-
-                <p class="text-[10px] uppercase tracking-widest text-white/40 italic">
-                    [Can't combine with other discounts or subscriptions]
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/BPC-157.png" alt="BPC-157 research peptide vial" class="absolute top-0 right-0 lg:w-[45%] max-lg:w-full lg:h-full max-lg:h-[40%] object-contain z-0 lg:opacity-100 max-lg:opacity-30 lg:translate-x-[5%] max-lg:translate-x-0 [filter:drop-shadow(0_0_100px_rgba(2,102_158,0.3))] pointer-events-none" />
-    <div class="absolute inset-0 lg:bg-[radial-gradient(circle_at_30%_50%,rgba(15,23,42,0.3)_0%,rgba(15,23,42,0.8)_50%,rgba(15,23,42,1)_100%)] max-lg:bg-[radial-gradient(circle_at_50%_40%,rgba(15,23,42,0.6)_0%,rgba(15,23,42,1)_100%)] z-10"></div>
-    <div class="relative z-10 w-full max-w-[1400px] mx-auto lg:px-[6%] px-6 sm:px-10 flex items-center min-h-0 lg:flex-row flex-col justify-center lg:h-auto h-full py-12 lg:py-0">
-        <div class="lg:absolute lg:top-[30%] lg:left-[60%] lg:-translate-x-1/2 lg:-translate-y-1/2 relative z-20 max-w-[480px] w-full text-white text-center animate-fade-in mt-8 lg:mt-0 order-2 lg:order-none">
-            <div class="flex gap-2.5 mb-5 max-sm:mb-4 bg-white/10 w-fit px-4 py-2 rounded-[20px] backdrop-blur-[4px] border border-white/10 mx-auto">
-                <div class="w-2.5 h-2.5 rounded-full bg-white cursor-pointer transition-all duration-300 scale-[1.3] active review-dot" data-index="0"></div>
-                <div class="w-2.5 h-2.5 rounded-full bg-white/30 cursor-pointer transition-all duration-300 review-dot" data-index="1"></div>
-                <div class="w-2.5 h-2.5 rounded-full bg-white/30 cursor-pointer transition-all duration-300 review-dot" data-index="2"></div>
-            </div>
-            <div class="flex gap-1.5 text-[#facc15] mb-4 max-sm:mb-3 justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            </div>
-            <div class="relative h-[120px] sm:h-[140px] max-w-[320px] sm:max-w-full mx-auto overflow-hidden">
-                <div class="absolute top-0 left-0 w-full opacity-100 visible translate-y-0 active review-item">
-                    <p class="text-[clamp(13px,1.5vw,20px)] sm:text-[18px] leading-relaxed text-white font-medium [text-shadow:0_2px_10px_rgba(0,0,0,0.3)] line-clamp-4 max-sm:line-clamp-3">"I absolutely love this company. Real legitimate products, easy to access calculator guides, and fast shipping..."</p>
-                </div>
-                <div class="absolute top-0 left-0 w-full opacity-0 invisible transition-all duration-500 translate-y-4 review-item">
-                    <p class="text-[clamp(13px,1.5vw,20px)] sm:text-[18px] leading-relaxed text-white font-medium [text-shadow:0_2px_10px_rgba(0,0,0,0.3)] line-clamp-4 max-sm:line-clamp-3">"The purity levels are unmatched. Every batch I've tested has exceeded my expectations for research consistency."</p>
-                </div>
-                <div class="absolute top-0 left-0 w-full opacity-0 invisible transition-all duration-500 translate-y-4 review-item">
-                    <p class="text-[clamp(13px,1.5vw,20px)] sm:text-[18px] leading-relaxed text-white font-medium [text-shadow:0_2px_10px_rgba(0,0,0,0.3)] line-clamp-4 max-sm:line-clamp-3">"Excellent customer support and detailed CoA documentation. Makes my laboratory workflow much smoother."</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="text-left lg:text-left text-center text-white max-w-[700px] lg:max-w-[800px] z-11 shrink-1 max-lg:mx-auto animate-slide-up order-1 lg:order-none">
-            <p class="text-[#38bdf8] text-[clamp(12px,1.2vw,16px)] font-extrabold uppercase tracking-[4px] sm:tracking-[6px] mb-4 sm:mb-6 flex items-center gap-3 justify-center lg:justify-start"><?php echo esc_html( get_theme_mod( 'hero_subtitle', 'Premium Quality' ) ); ?></p>
-            <?php 
-            $hero_title = get_theme_mod( 'hero_title', 'Research Peptides' );
-            $title_parts = explode( ' ', $hero_title );
-            $last_word = array_pop( $title_parts );
-            $main_title = implode( ' ', $title_parts );
-            ?>
-            <h1 class="text-[clamp(36px,6vw,96px)] font-extrabold leading-[1.05] sm:leading-[0.95] mb-6 sm:mb-10 text-white [text-shadow:0_4px_24px_rgba(0,0,0,0.5)] tracking-[-0.04em]">
-                <?php echo esc_html( $main_title ); ?><br />
-                <span class="text-[#38bdf8] relative inline-block mt-2 sm:mt-4"><?php echo esc_html( $last_word ); ?></span>
-            </h1>
-            <p class="text-[#e0f2fe] text-[clamp(14px,1.5vw,22px)] sm:text-[20px] leading-relaxed mb-10 sm:mb-12 max-w-[600px] mx-auto lg:mx-0 font-normal [text-shadow:0_2px_8px_rgba(0,0,0,0.4)] opacity-90">
-                Research-only peptides with ≥99% purity, HPLC tested and batch-verified so your data is clean, repeatable, and publication-ready.
-            </p>
-            <div class="flex gap-4 sm:gap-6 justify-center lg:justify-start">
-                <a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="px-8 sm:px-12 py-3.5 sm:py-5 rounded-full font-extrabold uppercase transition-all duration-300 inline-flex items-center gap-4 text-[13px] sm:text-[15px] tracking-widest bg-primary text-white shadow-xl hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-primary/30 w-full sm:w-auto justify-center">
-                    Shop Now
-                    <span class="bg-white text-primary w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:rotate-45">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-                    </span>
-                </a>
-            </div>
-        </div>
-    </div>
-v>
 </section>
+
 
 <!-- Trust Features Section -->
 <section class="py-12 sm:py-20 bg-white border-b border-[#f1f5f9] mt-0 reveal-on-scroll">
@@ -637,3 +622,83 @@ v>
 
 <?php
 get_footer();
+?>
+
+<!-- Age Verification Modal -->
+<div id="age-verification-modal" class="fixed inset-0 z-[1100] hidden items-center justify-center p-4 bg-background/95 backdrop-blur-lg animate-fade-in">
+    <div class="relative bg-white w-full max-w-lg rounded-[40px] p-12 text-center shadow-2xl border border-border overflow-hidden">
+        <div class="relative space-y-10">
+            <div class="flex justify-center">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/main logo  - Edited.png" alt="Logo" class="h-16 w-auto">
+            </div>
+
+            <div class="space-y-4">
+                <h2 class="text-3xl font-display font-extrabold text-foreground uppercase tracking-tight">
+                    Age Verification
+                </h2>
+                <p class="text-muted-foreground text-lg">
+                    You must be at least 21 years of age to enter this research facility.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6">
+                <button onclick="verifyAge(true)" class="group relative bg-primary hover:bg-brand-blue-dark transition-all duration-500 rounded-2xl py-5 px-8 border border-primary overflow-hidden shadow-xl shadow-primary/20">
+                    <span class="relative z-10 block font-display font-bold text-xl text-white">I AM 21+</span>
+                </button>
+                
+                <button onclick="verifyAge(false)" class="group relative bg-secondary hover:bg-secondary-foreground/10 transition-all duration-500 rounded-2xl py-5 px-8 border border-border overflow-hidden">
+                    <span class="relative z-10 block font-display font-bold text-xl text-foreground">EXIT</span>
+                </button>
+            </div>
+            
+            <p class="text-[10px] uppercase tracking-widest text-muted-foreground/60 italic">
+                [All research must be conducted by qualified individuals. By entering, you agree to our Terms of Service.]
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- First Visit Popup -->
+<div id="first-visit-popup" class="fixed inset-0 z-[1000] hidden items-center justify-center p-4 bg-background/80 backdrop-blur-md animate-fade-in">
+    <div class="relative bg-primary w-full max-w-lg rounded-[40px] p-12 text-center text-white shadow-2xl overflow-hidden group">
+        <!-- Close Button -->
+        <button id="close-popup" class="absolute top-6 right-6 text-white/60 hover:text-white transition-colors z-10">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+
+        <!-- Decorative Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none"></div>
+        <div class="absolute -top-24 -right-24 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="relative space-y-8">
+            <div class="flex justify-center">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/main logo  - Edited.png" alt="Logo" class="h-16 w-auto">
+            </div>
+
+            <div class="space-y-4">
+                <h2 class="text-4xl font-display font-extrabold leading-tight uppercase tracking-tight">
+                    Get 5% Off Your<br />First Order!
+                </h2>
+                <p class="text-white/80 text-lg">
+                    Join the Halo Peptideco community to receive <span class="text-white font-bold">5% off</span> your first order.
+                </p>
+            </div>
+
+            <form id="popup-newsletter-form" class="space-y-4">
+                <input 
+                    type="email" 
+                    placeholder="Enter Email Address Here" 
+                    class="w-full bg-white/10 border border-white/20 rounded-2xl py-5 px-6 text-white placeholder:text-white/50 focus:outline-none focus:bg-white/20 focus:border-white/40 transition-all text-center"
+                    required
+                />
+                <button type="submit" class="w-full bg-white text-primary font-bold py-5 rounded-2xl uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl">
+                    Sign Up & Get 5% Off
+                </button>
+            </form>
+
+            <p class="text-[10px] uppercase tracking-widest text-white/40 italic">
+                [Can't combine with other discounts or subscriptions]
+            </p>
+        </div>
+    </div>
+</div>
