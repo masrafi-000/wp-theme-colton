@@ -236,18 +236,18 @@ get_header();
 
 <!-- Featured Products -->
 <section class="bg-[#f8fafc] border-y border-border reveal-on-scroll">
-    <div class="container mx-auto py-16 sm:py-24 px-6 sm:px-8">
+    <div class="container max-w-[1400px] xl:max-w-[1600px] 2xl:max-w-[1720px] mx-auto py-16 sm:py-24 px-6 sm:px-10">
         <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 sm:mb-16 gap-6">
             <div class="text-left">
                 <p class="text-primary text-[10px] sm:text-xs tracking-[0.3em] uppercase font-bold mb-3 sm:mb-4">Top Sellers</p>
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-foreground">Featured Products</h2>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground tracking-tight">Featured Products</h2>
             </div>
-            <a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="flex items-center gap-2 text-xs sm:text-sm text-primary hover:text-brand-blue-dark font-bold uppercase tracking-widest transition-colors group">
-                View All <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform group-hover:translate-x-1"><path d="m9 18 6-6-6-6"/></svg>
+            <a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="flex items-center gap-3 text-xs sm:text-sm text-primary hover:text-brand-blue-dark font-bold uppercase tracking-widest transition-colors group">
+                View All Research <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform group-hover:translate-x-2"><path d="m9 18 6-6-6-6"/></svg>
             </a>
         </div>
 
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
+        <div class="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 lg:gap-6">
             <?php
             if ( class_exists( 'WooCommerce' ) ) {
                 $args = array(
