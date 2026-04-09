@@ -337,39 +337,17 @@
     display: none;
   }
 
-  /* Logo size – same on all pages (shop, cart, single product, etc.) */
-  .site-header-logo img {
-    height: 5rem;
-    width: auto;
-    max-height: none;
-  }
-
-  .footer-logo {
-    height: 12rem;
-    width: auto;
-  }
-
-  @media (max-width: 1024px) {
-    .site-header-logo img {
-      height: 4rem;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .site-header-logo img {
-      height: 3rem;
-    }
-  }
   /* Sticky Header Admin Bar Offset */
   .admin-bar header.sticky {
-    top: 2rem;
+    top: 32px;
   }
   @media (max-width: 782px) {
     .admin-bar header.sticky {
-      top: 2.875rem;
+      top: 46px;
     }
   }
 }
+
 
 @utility animate-fade-in {
   animation: fade-in 0.6s ease-out forwards;
@@ -431,14 +409,14 @@ button.single_add_to_cart_button.button.alt:hover,
    always emits these in output.css
    ============================================================= */
 .variation-btn {
-  min-width: 80px;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.875rem;
+  min-width: 60px;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
   border: 2px solid #e2e8f0;
   background-color: #ffffff;
   color: #0f172a;
   font-weight: 700;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   letter-spacing: 0.025em;
   cursor: pointer;
   transition:
@@ -451,6 +429,16 @@ button.single_add_to_cart_button.button.alt:hover,
   align-items: center;
   justify-content: center;
 }
+
+@media (min-width: 640px) {
+  .variation-btn {
+    min-width: 80px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.875rem;
+    font-size: 0.875rem;
+  }
+}
+
 
 .variation-btn:hover {
   border-color: #02669e;

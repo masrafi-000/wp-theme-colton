@@ -159,15 +159,15 @@ function colton_research_product_scientific_details() {
 
     if ( empty($specs) && empty($certs) ) return;
     ?>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 border-t border-border pt-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10 lg:gap-16 mt-8 sm:mt-12 border-t border-border pt-8 sm:pt-12">
         <?php if ( ! empty($specs) ) : ?>
-            <div class="space-y-4">
-                <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Technical Specs</h4>
-                <div class="space-y-2">
+            <div class="space-y-4 sm:space-y-6">
+                <h4 class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-primary">Technical Specs</h4>
+                <div class="space-y-2 sm:space-y-3">
                     <?php foreach ( $specs as $label => $val ) : ?>
-                        <div class="flex justify-between text-xs py-2 border-b border-border/50">
+                        <div class="flex justify-between text-xs sm:text-sm py-2 border-b border-border/50">
                             <span class="text-muted-foreground"><?php echo esc_html($label); ?></span>
-                            <span class="text-foreground font-medium"><?php echo esc_html($val); ?></span>
+                            <span class="text-foreground font-semibold"><?php echo esc_html($val); ?></span>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -175,14 +175,14 @@ function colton_research_product_scientific_details() {
         <?php endif; ?>
 
         <?php if ( ! empty($certs) ) : ?>
-            <div class="space-y-4">
-                <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Certifications</h4>
-                <div class="flex flex-wrap gap-2">
+            <div class="space-y-4 sm:space-y-6">
+                <h4 class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-primary">Certifications</h4>
+                <div class="flex flex-wrap gap-2 sm:gap-3">
                     <?php foreach ( $certs as $cert ) : ?>
-                        <span class="px-3 py-1 bg-secondary/50 rounded-full text-[10px] font-bold text-foreground border border-border uppercase"><?php echo esc_html($cert); ?></span>
+                        <span class="px-3 py-1.5 sm:px-4 sm:py-2 bg-secondary/40 rounded-full text-[9px] sm:text-[10px] font-bold text-foreground border border-border uppercase tracking-wider"><?php echo esc_html($cert); ?></span>
                     <?php endforeach; ?>
                 </div>
-                <p class="text-[10px] text-muted-foreground leading-relaxed italic">Batch-specific COA included with every shipment.</p>
+                <p class="text-[10px] sm:text-xs text-muted-foreground leading-relaxed italic opacity-80">Batch-specific COA included with every shipment.</p>
             </div>
         <?php endif; ?>
     </div>

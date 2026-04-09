@@ -1,14 +1,14 @@
 	</main><!-- #main -->
 
 	<footer class="border-t border-border bg-card">
-		<div class="container mx-auto py-16 px-4">
-			<div class="grid grid-cols-1 md:grid-cols-4 gap-10 text-left">
+		<div class="container mx-auto py-12 sm:py-16 px-6 sm:px-8">
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-10 text-left">
 				<!-- Brand -->
-				<div class="space-y-4">
+				<div class="space-y-6 flex flex-col items-center sm:items-start text-center sm:text-left">
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-2">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/main logo  - Edited.png" alt="<?php bloginfo( 'name' ); ?>" class="footer-logo h-48 w-auto">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/main logo  - Edited.png" alt="<?php bloginfo( 'name' ); ?>" class="footer-logo h-24 sm:h-32 md:h-40 xl:h-48 w-auto transition-transform hover:scale-105 duration-300">
 					</a>
-					<p class="text-sm text-muted-foreground leading-relaxed">
+					<p class="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-xs">
 						Premium research-grade peptides synthesized in cGMP facilities. 
 						All products are HPLC verified with ≥99% purity.
 					</p>
