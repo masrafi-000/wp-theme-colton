@@ -1,74 +1,72 @@
 	</main><!-- #main -->
 
-	<footer class="border-t border-border bg-card">
-		<div class="container mx-auto py-12 sm:py-16 px-6 sm:px-8">
-			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-10 text-left">
-				<!-- Brand -->
-				<div class="space-y-6 flex flex-col items-center sm:items-start text-center sm:text-left">
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-2">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/main logo  - Edited.png" alt="<?php bloginfo( 'name' ); ?>" class="footer-logo h-24 sm:h-32 md:h-40 xl:h-48 w-auto transition-transform hover:scale-105 duration-300">
+	<footer class="bg-[#f8fafc] text-slate-900 overflow-hidden relative border-t border-slate-200">
+        <!-- Subtle Scientific Background (Ultra-low opacity for light theme) -->
+        <div class="absolute inset-0 z-0 opacity-[0.02] scientific-grid pointer-events-none"></div>
+
+		<div class="container max-w-[1400px] xl:max-w-[1600px] 2xl:max-w-[1720px] mx-auto py-16 sm:py-24 px-6 sm:px-10 relative z-10">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+				
+				<!-- Column 1: Scientific Identity (Span 6) -->
+				<div class="lg:col-span-6 space-y-8 flex flex-col items-center sm:items-start text-center sm:text-left">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="block group">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/main logo  - Edited.png" alt="<?php bloginfo( 'name' ); ?>" class="footer-logo h-24 sm:h-32 xl:h-40 w-auto transition-transform group-hover:scale-105 duration-500">
 					</a>
-					<p class="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-xs">
-						Premium research-grade peptides synthesized in cGMP facilities. 
-						All products are HPLC verified with ≥99% purity.
-					</p>
+					<div class="space-y-6 max-w-xl">
+                        <p class="text-base text-slate-500 leading-relaxed font-medium">
+                            Halo Peptideco sets the gold standard for research synthesis. Every compound is batch-verified in cGMP facilities to ensure undisputed laboratory integrity and pharmaceutical-grade purity across every requisition.
+                        </p>
+                        <!-- Purity Badges -->
+                        <div class="flex items-center justify-center sm:justify-start gap-4 pt-2">
+                             <div class="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-xl shadow-sm">
+                                <span class="w-2 h-2 rounded-full bg-[#38bdf8] animate-pulse"></span>
+                                <span class="text-[10px] font-extrabold uppercase tracking-widest text-slate-950">cGMP Protocol</span>
+                             </div>
+                             <div class="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-xl shadow-sm">
+                                <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                                <span class="text-[10px] font-extrabold uppercase tracking-widest text-slate-500">&ge;99% HPLC PURITY</span>
+                             </div>
+                        </div>
+                    </div>
 				</div>
 
-				<!-- Quick Links -->
-				<div>
-					<h4 class="text-sm font-display font-semibold tracking-wider uppercase text-foreground mb-4">Quick Links</h4>
-					<ul class="space-y-3">
-						<li><a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="text-sm text-muted-foreground hover:text-primary transition-colors">Shop All</a></li>
-						<li><a href="<?php echo esc_url( home_url( '/about' ) ); ?>" class="text-sm text-muted-foreground hover:text-primary transition-colors">About Us</a></li>
-						<li><a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="text-sm text-muted-foreground hover:text-primary transition-colors">Contact</a></li>
-						<li><a href="<?php echo esc_url( home_url( '/faq' ) ); ?>" class="text-sm text-muted-foreground hover:text-primary transition-colors">FAQ</a></li>
+				<!-- Column 2: Research Database (Span 3) -->
+				<div class="lg:col-span-3">
+					<h4 class="text-[11px] font-display font-bold tracking-[0.3em] uppercase text-slate-900 mb-8 border-l-3 border-[#38bdf8] pl-4">Research Tools</h4>
+					<ul class="space-y-5">
+						<li><a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="text-[14px] text-slate-500 hover:text-[#38bdf8] transition-all duration-300 flex items-center gap-3 group font-medium"><span class="w-0 group-hover:w-5 h-[2px] bg-[#38bdf8] transition-all duration-300"></span>Primary Catalog</a></li>
+						<li><a href="<?php echo esc_url( home_url( '/about' ) ); ?>" class="text-[14px] text-slate-500 hover:text-[#38bdf8] transition-all duration-300 flex items-center gap-3 group font-medium"><span class="w-0 group-hover:w-5 h-[2px] bg-[#38bdf8] transition-all duration-300"></span>Operational Ethics</a></li>
+						<li><a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="text-[14px] text-slate-500 hover:text-[#38bdf8] transition-all duration-300 flex items-center gap-3 group font-medium"><span class="w-0 group-hover:w-5 h-[2px] bg-[#38bdf8] transition-all duration-300"></span>Direct Consultation</a></li>
+						<li><a href="<?php echo esc_url( home_url( '/faq' ) ); ?>" class="text-[14px] text-slate-500 hover:text-[#38bdf8] transition-all duration-300 flex items-center gap-3 group font-medium"><span class="w-0 group-hover:w-5 h-[2px] bg-[#38bdf8] transition-all duration-300"></span>Technical Support</a></li>
 					</ul>
 				</div>
 
-				<!-- Categories -->
-				<div>
-					<h4 class="text-sm font-display font-semibold tracking-wider uppercase text-foreground mb-4">Categories</h4>
-					<ul class="space-y-3">
-						<?php
-						$categories = get_terms( array(
-							'taxonomy' => 'product_cat',
-							'hide_empty' => false,
-							'number' => 5,
-						) );
-						if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) {
-							foreach ( $categories as $category ) {
-								echo '<li><a href="' . esc_url( get_term_link( $category ) ) . '" class="text-sm text-muted-foreground hover:text-primary transition-colors">' . esc_html( $category->name ) . '</a></li>';
-							}
-						} else {
-							echo '<li><a href="' . esc_url( home_url( '/shop' ) ) . '" class="text-sm text-muted-foreground hover:text-primary transition-colors">Muscle Growth</a></li>';
-							echo '<li><a href="' . esc_url( home_url( '/shop' ) ) . '" class="text-sm text-muted-foreground hover:text-primary transition-colors">Fat Loss</a></li>';
-						}
-						?>
-					</ul>
-				</div>
-
-				<!-- Policies -->
-				<div>
-					<h4 class="text-sm font-display font-semibold tracking-wider uppercase text-foreground mb-4">Policies</h4>
-					<ul class="space-y-3">
-						<li><a href="<?php echo esc_url( home_url( '/terms' ) ); ?>" class="text-sm text-muted-foreground hover:text-primary transition-colors">Terms & Conditions</a></li>
-						<li><a href="<?php echo esc_url( home_url( '/privacy' ) ); ?>" class="text-sm text-muted-foreground hover:text-primary transition-colors">Privacy Policy</a></li>
-						<li><a href="<?php echo esc_url( home_url( '/refund' ) ); ?>" class="text-sm text-muted-foreground hover:text-primary transition-colors">Refund Policy</a></li>
-						<li><a href="<?php echo esc_url( home_url( '/shipping' ) ); ?>" class="text-sm text-muted-foreground hover:text-primary transition-colors">Shipping Policy</a></li>
+				<!-- Column 3: Compliance & Legal (Span 3) -->
+				<div class="lg:col-span-3">
+					<h4 class="text-[11px] font-display font-bold tracking-[0.3em] uppercase text-slate-900 mb-8 border-l-3 border-[#38bdf8] pl-4">Compliance</h4>
+					<ul class="space-y-5">
+						<li><a href="<?php echo esc_url( home_url( '/terms' ) ); ?>" class="text-[14px] text-slate-500 hover:text-[#38bdf8] transition-all duration-300 flex items-center gap-3 group font-medium"><span class="w-0 group-hover:w-5 h-[2px] bg-[#38bdf8] transition-all duration-300"></span>Service Framework</a></li>
+						<li><a href="<?php echo esc_url( home_url( '/privacy' ) ); ?>" class="text-[14px] text-slate-500 hover:text-[#38bdf8] transition-all duration-300 flex items-center gap-3 group font-medium"><span class="w-0 group-hover:w-5 h-[2px] bg-[#38bdf8] transition-all duration-300"></span>Data Protection</a></li>
+						<li><a href="<?php echo esc_url( home_url( '/refund' ) ); ?>" class="text-[14px] text-slate-500 hover:text-[#38bdf8] transition-all duration-300 flex items-center gap-3 group font-medium"><span class="w-0 group-hover:w-5 h-[2px] bg-[#38bdf8] transition-all duration-300"></span>Fulfillment Policies</a></li>
 					</ul>
 				</div>
 			</div>
 
-			<!-- Disclaimer -->
-			<div class="mt-12 pt-8 border-t border-border">
-				<p class="text-xs text-muted-foreground text-center leading-relaxed max-w-3xl mx-auto">
-					<strong class="text-primary uppercase">Research Use Only</strong> — All products sold on this website are intended strictly for laboratory and research purposes. 
-					They are not intended for human consumption, veterinary use, or any therapeutic applications. 
-					By purchasing, you agree to use these products solely for in vitro research.
-				</p>
-				<p class="text-xs text-muted-foreground text-center mt-4">
-					© <?php echo date('Y'); ?> <?php bloginfo( 'name' ); ?>. All rights reserved.
-				</p>
+			<!-- Legal Disclaimer -->
+			<div class="mt-20 pt-10 border-t border-slate-200">
+				<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-8">
+                        <p class="text-[11px] text-slate-400 text-center lg:text-left leading-relaxed uppercase tracking-[0.2em] font-bold">
+                            <span class="text-slate-900 font-extrabold mr-3">Research Directive:</span> 
+                            All products are for laboratory research use only. Not for human consumption, diagnostics, or therapeutic applications. Compliance with local research protocols is mandatory.
+                        </p>
+                    </div>
+                    <div class="lg:col-span-4 lg:text-right text-center">
+                        <p class="text-[11px] text-slate-400 uppercase tracking-widest font-black">
+                            &copy; <?php echo date('Y'); ?> <?php bloginfo( 'name' ); ?>. Laboratory Registry.
+                        </p>
+                    </div>
+                </div>
 			</div>
 		</div>
 	</footer>

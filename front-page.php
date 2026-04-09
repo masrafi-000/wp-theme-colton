@@ -425,7 +425,7 @@ get_header();
                     <span class="text-white/60 text-[10px] sm:text-xs font-bold uppercase tracking-[0.4em]">Optimized Workflow</span>
                 </div>
 
-                <h2 class="text-[clamp(44px,11vw,130px)] font-display font-black leading-[0.95] text-white tracking-tighter mix-blend-plus-lighter">
+                <h2 class="text-6xl md:text-8xl font-display font-black leading-[0.95] text-white tracking-tighter mix-blend-plus-lighter">
                     Simple<span class="text-[#38bdf8]">.</span><br />
                     Powerful<span class="text-[#38bdf8]">.</span><br />
                     Effective<span class="text-[#38bdf8]">.</span>
