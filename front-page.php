@@ -179,30 +179,95 @@ get_header();
     </div>
 </section>
 
-<!-- Next-Generation Section -->
-<section class="py-24 bg-white overflow-hidden">
-    <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div class="space-y-8 text-left">
-                <div class="space-y-4">
-                    <span class="text-sm font-bold text-[#02669e] uppercase tracking-[2px] mb-4 block">Premium Quality</span>
-                    <h2 class="text-[clamp(28px,4vw,48px)] font-extrabold leading-[1.1] text-[#0f172a] mb-6">Next-Generation Research Peptides</h2>
-                    <p class="text-lg text-muted-foreground leading-relaxed max-w-lg">
-                        Experience a breakthrough in research with our advanced peptide formulations. Crafted for scientists who demand the extraordinary.
+<!-- Next-Generation Editorial Section -->
+<section class="py-20 sm:py-32 bg-[#fcfcfc] overflow-hidden relative">
+    <!-- Scientific Background Pattern (Soft Right) -->
+    <div class="absolute right-0 top-0 bottom-0 w-1/3 scientific-grid opacity-[0.03] [mask-image:linear-gradient(to_left,black,transparent)] hidden lg:block"></div>
+
+    <div class="container max-w-[1400px] xl:max-w-[1600px] 2xl:max-w-[1720px] mx-auto px-6 sm:px-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+            
+            <!-- Left Content: Editorial Brand Narrative -->
+            <div class="lg:col-span-6 space-y-10 lg:space-y-12 text-center lg:text-left reveal-on-scroll">
+                <div class="space-y-6">
+                    <div class="flex items-center justify-center lg:justify-start gap-4">
+                        <span class="h-[1px] w-12 bg-[#38bdf8]/40 hidden sm:block"></span>
+                        <span class="text-[11px] font-bold text-[#38bdf8] uppercase tracking-[0.4em] mb-0 block">Pharmaceutical Standards</span>
+                    </div>
+                    
+                    <h2 class="text-[clamp(32px,5vw,64px)] font-display font-extrabold leading-[1.05] text-[#0f172a] tracking-tight">
+                        Next-Generation <br />
+                        <span class="text-slate-400 font-light">Research Peptides</span>
+                    </h2>
+                    
+                    <p class="text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed max-w-xl mx-auto lg:mx-0 font-medium opacity-90">
+                        Experience a breakthrough in research with our advanced peptide formulations. Synthesized for precision, every batch is verified to exceed pharmaceutical-grade expectations. Crafted for scientists who demand undisputed laboratory integrity.
                     </p>
                 </div>
-                <a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="bg-[#02669e] text-white rounded-[50px] px-8 py-3 font-bold inline-flex items-center gap-3 transition-all duration-300 uppercase text-sm hover:bg-[#014d7a] hover:-translate-y-0.5">
-                    Shop Now
-                    <span class="bg-white text-[#02669e] w-7 h-7 rounded-full flex items-center justify-center text-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-                    </span>
-                </a>
-            </div>
-            <div class="relative">
-                <div class="rounded-[40px] overflow-hidden">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/BPC-157.png" alt="Research Peptides" class="w-full h-auto max-w-md mx-auto drop-shadow-2xl" />
+
+                <!-- Technical Highlights -->
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-8 sm:gap-12 py-4 border-y border-slate-200/60">
+                    <div class="flex flex-col gap-1">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-widest leading-none">Purity Grade</span>
+                        <span class="text-xl font-display font-bold text-slate-900">&ge;99.2% HPLC</span>
+                    </div>
+                    <div class="w-[1px] h-8 bg-slate-200 hidden sm:block"></div>
+                    <div class="flex flex-col gap-1">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-widest leading-none">Synthesis</span>
+                        <span class="text-xl font-display font-bold text-slate-900">cGMP Lab</span>
+                    </div>
+                    <div class="w-[1px] h-8 bg-slate-200 hidden sm:block"></div>
+                    <div class="flex flex-col gap-1">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-widest leading-none">Storage</span>
+                        <span class="text-xl font-display font-bold text-slate-900">-20&deg;C Monitored</span>
+                    </div>
+                </div>
+
+                <div class="pt-6">
+                    <a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="relative inline-flex items-center gap-4 group">
+                        <span class="bg-[#0f172a] text-white rounded-full px-10 py-5 font-bold uppercase text-[12px] tracking-[0.2em] transition-all duration-500 group-hover:bg-[#38bdf8] group-hover:text-white shadow-2xl shadow-slate-900/10 group-hover:shadow-[#38bdf8]/20 group-hover:-translate-y-1">
+                            Explore Catalog
+                        </span>
+                        <span class="w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center transition-all duration-500 group-hover:border-[#38bdf8] group-hover:bg-[#38bdf8]/5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-900 transition-transform group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </span>
+                    </a>
                 </div>
             </div>
+
+            <!-- Right Content: Technical Product Showcase -->
+            <div class="lg:col-span-6 relative flex items-center justify-center reveal-on-scroll">
+                <!-- Decorative Circle -->
+                <div class="absolute w-[80%] aspect-square rounded-full border border-slate-200/60 -z-10 animate-[spin_60s_linear_infinite]">
+                    <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#38bdf8]"></div>
+                </div>
+
+                <div class="relative z-20 group p-8 lg:p-12">
+                    <!-- Floating Data Card 1 -->
+                    <div class="absolute top-1/4 -left-8 xl:-left-16 glass-card-premium px-5 py-3 rounded-2xl shadow-xl border-l-4 border-l-[#38bdf8] animate-float">
+                        <div class="flex flex-col gap-1">
+                            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Peptide Profile</span>
+                            <span class="text-[13px] font-bold text-slate-900 font-display">HPLC VERIFIED</span>
+                        </div>
+                    </div>
+
+                    <!-- Floating Data Card 2 -->
+                    <div class="absolute bottom-1/4 -right-8 xl:-right-16 glass-card-premium px-5 py-3 rounded-2xl shadow-xl border-r-4 border-r-slate-400/30 animate-float delay-500">
+                        <div class="flex flex-col gap-1">
+                            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Certificate status</span>
+                            <span class="text-[13px] font-bold text-slate-900 font-display underline decoration-[#38bdf8] decoration-2 underline-offset-4">COA DOWNLOAD</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-[60px] p-4 shadow-[0_40px_100px_rgba(0,0,0,0.08)] transition-transform duration-700 hover:scale-105">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/BPC-157.png" alt="Research Grade Peptides" class="w-full h-auto max-w-[320px] sm:max-w-md lg:max-w-full mx-auto" />
+                    </div>
+                </div>
+                
+                <!-- Background Glow -->
+                <div class="absolute inset-0 bg-[#38bdf8]/5 blur-[120px] rounded-full scale-150 -z-20"></div>
+            </div>
+
         </div>
     </div>
 </section>
